@@ -1,0 +1,48 @@
+.list-nest-counter {
+  ol  {
+    counter-reset: nest;
+  }
+  li {
+    padding-top: 1em;
+    counter-increment: nest;
+    &::marker {
+      content: counters(nest, '.') ' ';
+    }
+  }
+}
+
+.list-formal {
+  list-style: trad-chinese-formal;
+  padding-inline-start: 2em;
+}
+
+.list-informal {
+  list-style: trad-chinese-informal;
+  padding-inline-start: 2em;
+}
+
+.list-informal-parenthese {
+  counter-reset: number;
+  li {
+    counter-increment: number;
+    &::marker {
+      content: '('counter(number, trad-chinese-informal)') ';
+    }
+  }
+}
+
+.list-pl-0 {
+  list-style-position: inside;
+  padding-inline-start: 0;
+}
+
+.list-px-0 {
+  margin-block-end: 0;
+  padding-inline-start: 0;
+  li {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+// https://developer.mozilla.org/en-US/docs/Web/CSS/counters
+// https://developer.mozilla.org/en-US/docs/Web/CSS/counter

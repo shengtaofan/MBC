@@ -1,0 +1,14 @@
+/* filename:style */ // sass-lint:disable-line no-css-comments
+@import './helper/inlineSVG';
+@import './bootstrap-configuration';
+@import './helper/scrollbar';
+@import './helper/component';
+@import './helper/quote';
+
+@import './page/fs';
+@import './page/layout';
+@import './page/index';
+@import './page/page';
+.img-cover {
+  object-fit: cover;
+}

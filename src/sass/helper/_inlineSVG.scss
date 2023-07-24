@@ -1,0 +1,51 @@
+// sass-lint:disable-line /* injectImportInlineSVG */
+
+%icon {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+@mixin icon($url) {
+  background-image: $url;
+  @content;
+}
+.ib-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+}
+.ic-left {
+  padding-left: 1.25em;
+  background-position: left center;
+  @extend %icon;
+}
+.ic-right {
+  padding-right: 1.25em;
+  background-position: right center;
+  @extend %icon;
+}
+.ic-bf:before {
+  content: '';
+  padding-left: 1.75em;
+  background-position: left center;
+  @extend %icon;
+}
+.ic-af:after {
+  content: '';
+  padding-right: 1.75em;
+  background-position: right center;
+  @extend %icon;
+}
+@mixin pseudo-icon($ab, $url) {
+  &:#{$ab} {
+    @include icon($url);
+    @content;
+  }
+}
+
+//1. inline文字 + inline icon
+// 父元素 設定font-size + icon padding-left 1.5em
+
+
+//2. inline 文字 + bg icon
+// 使用 padding-left padding-right 1.25em + background-position

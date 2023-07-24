@@ -1,0 +1,35 @@
+mixin canonical(langsObj)
+  //-主要url
+  link(rel='canonical' href=testingDomain + baseDir + '/en/' + filename)
+  //-多語言url除了 x-default 指向首頁，頁面路徑都要改語言的頁面
+  link(rel='alternate' hreflang='x-default' href=testingDomain + baseDir + '/en/index.html')
+  each lang, country in langsObj
+    link(rel='alternate' hreflang=lang href=testingDomain + baseDir + '/' + country + '/' + filename)
+
+title=title
+meta(name='description' content=desc)
+meta(charset='UTF-8')
+meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+meta(property='og:title' content=title)
+meta(property='og:description' content=desc)
+//- A short description of min. 2 max. 4 sentences
+meta(property='og:image' content=testingDomain + baseDir + '/img/og.jpg')
+
+//- The URL of the image, at least 600x315 pixels, preferable 1200x630 pixels
+meta(property='og:url' content=testingDomain + baseDir + '/' + filename)
+meta(property='og:site_name' content=title)
+!=headTags.filter(({ tagName }) => tagName === 'meta')
+//- meta(name='twitter:title' content=title)
+//-  A brief but comprehensive title of max. 70 characters
+//- meta(name='twitter:description' content=desc)
+
+//- A brief description of the tweet max. 200 characters. Do not re-use the title as the description
+meta(name='twitter:image' content=testingDomain + baseDir + '/img/og.jpg')
+//- Add a unique not a generic image representing the content at least 280x150 pixels
+
+//- meta(name='author' content='YuHaoSyu')
+//- meta(name='company' content='思脈數位股份有限公司')
+//- meta(name='copyright' content='')
+//- meta(name='revisit-after' content='1 days')
+//- meta(http-equiv='expires' content='0')
+//- +canonical(langs)

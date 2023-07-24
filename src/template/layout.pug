@@ -1,0 +1,53 @@
+include ./layout/seo.pug
+include ./layout/jsonld.pug
+include ./components/cshtmlComment.pug
+include ./components/utilities.pug
+-
+  let {
+    options: { basename, filename, lang, locale },
+    tags: { headTags }
+  } = htmlWebpackPlugin
+- const seoMeta = ['demo', 'layout'].includes(basename) ? seo[basename] : seo[locale][basename]
+- const { title, desc } = seoMeta
+- let headerH1 = false
+mixin console(vars)
+  pre #{vars}
+block local
+
+mixin layout()
+  doctype html
+  html(lang=lang)
+    head
+      include ./layout/meta.pug
+      !=headTags.filter(({ tagName }) => tagName === 'link')
+      block style
+    body
+      if basename !== 'demo'
+        include ./layout/header.pug
+      block body
+      +cshtmlComment('■■■■■■■■■■■■■■')
+      +cshtmlComment('              ')
+      +cshtmlComment(' View content ')
+      +cshtmlComment('              ')
+      +cshtmlComment('■■■■■■■■■■■■■■')
+      if basename !== 'demo'
+        include ./layout/footer.pug
+      //- if basename==='demo'
+      //-   !=headTags.filter(({attributes:attr}) => attr.src && attr.src.includes('demo'))
+      //- else
+      !=headTags.filter(({ tagName }) => tagName === 'script')
+      block script
+
+if basename === 'layout'
+  - filename = '**套入正確URL**'
+  +layout()
+  // prod layout
+
+else if ext === '.cshtml'
+  block body
+  block jsonld
+  // prod content
+
+else
+  +layout()
+  // dev layout

@@ -1,0 +1,21 @@
+$utl-sizing: true;
+// stylelint-disable declaration-no-important
+
+// Width and height
+@mixin sizing($infix) {
+@each $prop, $abbrev in (width: w, height: h) {
+  @each $size, $length in $sizes {
+    .#{$abbrev}#{$infix}-#{$size} { #{$prop}: #{$length}#{if($length == auto, '', '%')}; }
+      // .v#{$abbrev}#{$infix}-#{$size} { #{$prop}: #{$length}v#{$abbrev} }
+      // .min-v#{$abbrev}#{$infix}-#{$size} { min-height: #{$size}v#{$abbrev}; }
+  }
+}
+}
+
+.max-w-none { max-width: none; }
+.max-h-none { max-height: none; }
+.max-w-100 { max-width: 100%; }
+.max-h-100 { max-height: 100%; }
+.min-vh-50 { min-height: 50vh;}
+
+// Viewport additional helpers

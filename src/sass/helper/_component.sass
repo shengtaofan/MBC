@@ -1,0 +1,22 @@
+$no-margin-collapse: 0.007813px
+=create-btn($config...)
+  $bg: map-get(keywords($config), 'bg') or $white
+  $border: map-get(keywords($config), 'border') or $bg
+  $color: map-get(keywords($config), 'color') or color-yiq($bg)
+
+  $hover-bg: map-get(keywords($config), 'hover-bg') or darken($bg, 7.5%)
+  $hover-border: map-get(keywords($config), 'hover-border')
+  $hover-color: map-get(keywords($config), 'hover-color') or color-yiq($hover-bg)
+
+  $active-bg: map-get(keywords($config), 'active-bg') or darken($bg, 10%)
+  $active-border: map-get(keywords($config), 'active-border') or darken($border, 12.5%)
+
+  +button-variant($bg, $border, $color, $hover-bg, $hover-border, $hover-color, $active-bg, $active-border)
+
+=create-btn-outline($config...)
+  $color: map-get(keywords($config), 'color') or $white
+  $color-hover: map-get(keywords($config), 'color-hover') or color-yiq($color)
+  $active-bg: map-get(keywords($config), 'active-bg') or $color
+  $active-border: map-get(keywords($config), 'active-border') or $color
+
+  +button-outline-variant($color, $color-hover, $active-bg, $active-border)

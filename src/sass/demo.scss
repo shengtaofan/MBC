@@ -1,0 +1,82 @@
+/* filename:demo */ // sass-lint:disable-line no-css-comments
+@import './bootstrap-configuration';
+@import './bootstrap4/reboot';
+@import './bootstrap4/type';
+@import './bootstrap4/grid';
+@import './bootstrap4/buttons';
+@import './bootstrap4/tables';
+@import './bootstrap4/forms';
+@import './bootstrap4/transitions';
+@import './bootstrap4/input-group';
+@import './bootstrap4/custom-forms';
+.btn-link {
+  color: #666;
+}
+.counter {
+  counter-reset: num;
+  &-item {
+    counter-increment: num;
+    &:nth-child(-n + 9) {
+      th:before {
+        content: '0' counter(num) ' ';
+      }
+    }
+    th:before {
+      content: counter(num) ' ';
+    }
+  }
+}
+textarea {
+  margin-top: -1px;
+  resize: none;
+}
+
+.css-all-device,
+.css-customize-device,
+.css-edit-checked-show,
+.table-rwd {
+  display: none;
+}
+.table {
+  width: auto;
+  white-space: nowrap;
+  thead th {
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+.css-all:has(> :checked) ~ .table-rwd .css-all-device,
+.css-customize:has(> :checked) ~ .table-rwd .css-customize-device {
+  display: table-cell;
+}
+%table-show {
+  display: block;
+}
+@each $lang in (zh, en) {
+  .css-#{$lang}:has(> :checked) ~ .css-#{$lang}-table {
+    @extend %table-show;
+  }
+}
+
+.css-edit:has(> :checked) ~ .table-rwd {
+  .css-edit-checked-hide {
+    display: none;
+  }
+  :is(th, td).css-edit-checked-show {
+    display: table-cell;
+  }
+  span.css-edit-checked-show {
+    display: inline;
+  }
+  input.css-edit-checked-show {
+    display: inline-block;
+    width: 450px;
+  }
+  textarea.css-edit-checked-show {
+    display: block;
+  }
+}
+
+caption {
+  text-align: right;
+}
