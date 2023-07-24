@@ -1,4 +1,5 @@
 include ./layout/seo.pug
+include ./layout/langs.pug
 include ./layout/jsonld.pug
 include ./components/cshtmlComment.pug
 include ./components/utilities.pug
@@ -7,6 +8,7 @@ include ./components/utilities.pug
     options: { basename, filename, lang, locale },
     tags: { headTags }
   } = htmlWebpackPlugin
+- const ctx = context[locale]
 - const seoMeta = ['demo', 'layout'].includes(basename) ? seo[basename] : seo[locale][basename]
 - const { title, desc } = seoMeta
 - let headerH1 = false

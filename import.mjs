@@ -55,6 +55,7 @@ export function importPugFiles() {
 }
 export const langs = {
   zh: 'zh-Hant-TW',
+  en: 'en'
 }
 export function htmlPlugins(outputExt) {
   const pugs = glob.sync('src/*').filter(file => file.endsWith('.pug') && !file.includes('demo'))

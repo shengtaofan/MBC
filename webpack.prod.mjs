@@ -113,7 +113,7 @@ if (+process.env.OPTIMIZE) {
 const prodConf = merge(common, {
   output: {
     path: path.resolve('dist'),
-    publicPath: './'
+    publicPath: '../'
   },
   module: {
     rules

@@ -78,7 +78,7 @@ const common = {
       primary: '"#000"',
       project: '"BeatyTechPlatform"',
       baseDir: '"/test/BeatyTechPlatform"',
-      projectName: '"晶澈"',
+      projectName: '"創業家"',
       testingDomain: '"https://whatlife.no-ip.org"',
       testingURL: '"https://whatlife.no-ip.org/test/BeatyTechPlatform"',
       externalIP: JSON.stringify('http://' + Server.internalIPSync('v4'))

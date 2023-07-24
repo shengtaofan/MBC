@@ -1,5 +1,165 @@
 extends ./template/layout.pug
 block local
   - headerH1 = true
+  -
+    const form = [
+      { id: 'name', label: ctx.name, placeholder: '請輸入您的姓名', type: 'text' },
+      { id: 'tel', label: ctx.tel, placeholder: '請輸入您的電話', type: 'tel' },
+      { id: 'mail', label: ctx.email, placeholder: '請輸入您的E-MAIL', type: 'email' },
+      { id: 'subject', label: ctx.subject, placeholder: '請輸入您的問題', type: 'text' }
+    ]
+block style
+  style.
 
 block body
+  section.banner(style=`--bg-url:url(${require('./img/rudder.jpg')})`)
+    .container.fz-32
+      h1.fs-64.mb-6=ctx.introduction1
+      .flexbox
+        .sp-l-6
+          p=ctx.content1
+  #sec-systemic.section.bg-pattern.py-5
+    .container.t-ctr.py-5.fz-24
+      .flexbox.J-ctr.gy-5.g-l-5
+        .sp-xl-8
+          h2.fz-40.mb-5=ctx.strength5
+          p=ctx.content5
+        .sp-12
+        .sp-l-6.sp-xl-3
+          .bg-cover(style!='background-image:url('+require('./img/b1.jpg')+');')
+            .bg-back-filter
+              h3.fz-24=ctx.benefit6
+              p=ctx.content6
+        .sp-l-6.sp-xl-3
+          .bg-cover(style!='background-image:url('+require('./img/b3.jpg')+');')
+            .bg-back-filter
+              h3.fz-24=ctx.benefit7
+              p=ctx.content7
+        .sp-l-6.sp-xl-3
+          .bg-cover(style!='background-image:url('+require('./img/b2.jpg')+');')
+            .bg-back-filter
+              h3.fz-24=ctx.benefit8
+              p=ctx.content8
+        .sp-l-6.sp-xl-3
+          .bg-cover(style!='background-image:url('+require('./img/b4.jpg')+');')
+            .bg-back-filter
+              h3.fz-24=ctx.benefit9
+              p=ctx.content9
+  section#sec-team.rel.fz-24.bg-tertiary
+    .container-fluid.px-0
+      .flexbox.gx-0
+        .sp-s-6.abs.top-0.bottom-0
+          img.img-cover(src=require('./img/team.jpg') width='100%' height='100%' alt=ctx.team2 title=ctx.team2 loading='eager')
+      .container.two-col-bg.lg-tertiary
+        .flexbox.J-end
+          .sp-s-6.sp-xl-4.spr-xl-1.py-5
+            h2.fz-40.mb-l-4=ctx.team2
+            p=ctx.content2
+
+  section#sec-publication.rel.fz-24.bg-primary
+    .container-fluid.px-0
+      .flexbox.gx-0.J-end
+        .sp-s-6.abs.top-0.bottom-0
+          img.img-cover(src=require('./img/publication.jpg') width='100%' height='100%' alt=ctx.publication3 title=ctx.publication3 loading='eager')
+      .container.two-col-bg.lg-primary
+        .flexbox
+          .sp-s-6.sp-xl-4.spl-xl-1.py-5
+            h2.fz-40.mb-l-4=ctx.publication3
+            p=ctx.content3
+
+  section.bg-attachment.fz-24(style!='background-image:url('+require('./img/rudder2.jpg')+');')
+    .bg-filter
+      .container.py-5
+        h3.mb-3=ctx.alliance4
+        ul.list-inline
+          each a in ctx.content4
+            li.list-inline-item=a
+
+  section#sec-plan
+    .container.py-5
+      h2.fz-40.t-ctr.mb-5=ctx.plan
+      .flexbox.J-ctr.gy-3.gy-l-5.mb-6
+        .sp-9.sp-s-6.sp-m-5.sp-xl-3
+          .bg-darken.py-3.py-xl-5
+            .t-ctr.fw-7
+              h3.fz-24.lh-xxl-tight(style='height:90px')=ctx.leader11
+              p.pr-1.pt-4.py-l-5.fz-32.t-tertiary.t-right(style='height: 145px')
+                sup=ctx.price11.substring(0,2)
+                =ctx.price11.substring(2)
+                sub=ctx.perHour
+            ul.list-group.list-group-flush.fz-20
+              each txt in ctx.content11
+                li.list-group-item=txt
+        .sp-9.sp-s-6.sp-m-5.sp-xl-3
+          .bg-darken.py-3.py-xl-5
+            .t-ctr.fw-7
+              h3.fz-24.lh-xxl-tight(style='height:90px')=ctx.boss12
+                br
+                small.fz-16=ctx.size12.substring(0, 4)
+                br
+                small.fz-16=ctx.size12.substring(5)
+              p.pr-1.pt-4.py-l-5.fz-32.t-tertiary.t-right(style='height: 145px')
+                sup=ctx.price12.substring(0,2)
+                =ctx.price12.substring(2)
+                sub=ctx.perHour
+            ul.list-group.list-group-flush.fz-20
+              each txt in ctx.content12
+                li.list-group-item=txt
+        .sp-9.sp-s-6.sp-m-5.sp-xl-3
+          .bg-darken.py-3.py-xl-5
+            .t-ctr.fw-7
+              h3.fz-24.lh-xxl-tight(style='height:90px')=ctx.boss13
+                br
+                small.fz-16=ctx.size13.substring(0, 4)
+                br
+                small.fz-16=ctx.size13.substring(5)
+              p.pr-1.pt-4.py-l-5.fz-32.t-tertiary.t-right(style='height: 145px')
+                sup=ctx.price13.substring(0,2)
+                =ctx.price13.substring(2)
+                sub=ctx.perHour
+            ul.list-group.list-group-flush.fz-20
+              each txt in ctx.content13
+                li.list-group-item=txt
+        .sp-9.sp-s-6.sp-m-5.sp-xl-3
+          .bg-darken.py-3.py-xl-5
+            .t-ctr.fw-7
+              h3.fz-24.lh-xxl-tight(style='height:90px')=ctx.boss14
+                br
+                small.fz-16=ctx.size14.substring(0, 4)
+                br
+                small.fz-16=ctx.size14.substring(5)
+              p.pr-1.pt-4.py-l-5.fz-32.t-tertiary.t-right(style='height: 145px')
+                sup=ctx.price14.substring(0,2)
+                =ctx.price14.substring(2)
+                sub=ctx.perHour
+            ul.list-group.list-group-flush.fz-20
+              each txt in ctx.content14
+                li.list-group-item=txt
+      h3.fz-24.t-ctr=ctx.payments11
+      .flexbox.J-ctr
+        ul.list-unstyled.fz-20
+          li 戶名 : 創業家顧問股份有限公司
+          li 帳號 : 602540375855
+          li 中國信託
+          li 銀行代號 : 822
+          li 分行別 : 大安分行
+  section.bg-gray-6
+    form#contact-form.container.py-5(action='./' novalidate)
+      h2.fz-40.t-ctr.mb-5=ctx.contact16
+      .flexbox.J-ctr.gy-3.gy-l-5
+        label.sp-form-label.sp-l-3.t-l-right(for='know')=ctx.howToKnow
+        .sp-l-5.spr-l-2.sp-xxl-4.spr-xxl-3
+          select#know.form-control(name='know' required)
+            each what, i in ctx.bywhat
+              option(value=what disabled=!i selected=!i)=what
+
+        each input in form
+          label.sp-form-label.sp-l-3.t-l-right(for=input.id)=input.label
+          .sp-l-5.spr-l-2.sp-xxl-4.spr-xxl-3
+            input.form-control(type=input.type id=input.id name=input.id placeholder=input.placeholder required)
+
+        label.sp-form-label.sp-l-3.t-l-right(for='msg') 留言信息
+        .sp-l-5.spr-l-2.sp-xxl-4.spr-xxl-3
+          textarea#msg.form-control(rows='4' name='msg' required)
+        .sp-l-3
+          button.btn.btn-block.btn-tertiary(type='submit')=ctx.submit
