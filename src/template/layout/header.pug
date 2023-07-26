@@ -13,10 +13,10 @@ mixin navDropdownSplit(navDropdownId='navbar-dropdown', catalog, catalogBasename
       each href, name in dropdownItems
         a.dropdown-item(href=href title=name)=name
 mixin logo(textContent, brand)
-  a.block(href='./index.html' class={'navbar-brand': brand} title=textContent)=textContent
+  a.block.t-tertiary(href='./index.html' class={'navbar-brand': brand} title=textContent)=textContent
     //- img.logo(src=require('./img/logo.png') title=textContent alt=textContent width='180' height='40' loading='eager')
 
-header.fxd-strch.top-0.bg-primary
+header.fxd-strch.top-0
   nav.navbar.navbar-expand-l.navbar-dark
     .container.J-between
       if headerH1
@@ -29,17 +29,14 @@ header.fxd-strch.top-0.bg-primary
         span.navbar-toggler-icon
       #mobile-menu.navbar-collapse.collapse
         ul.navbar-nav.ml-auto
-
           li.nav-item
-            a.nav-link(href='#sec-systemic' title='Link' class={ active: basename==='Link' })=ctx.strength5
+            a.nav-link(href='./index.html#sec-team' title='Link' class={ active: basename==='Link' })=ctx.team2
           li.nav-item
-            a.nav-link(href='#sec-team' title='Link' class={ active: basename==='Link' })=ctx.team2
+            a.nav-link(href='./index.html#sec-publication' title='Link' class={ active: basename==='Link' })=ctx.publication3
           li.nav-item
-            a.nav-link(href='#sec-publication' title='Link' class={ active: basename==='Link' })=ctx.publication3
+            a.nav-link(href='./index.html#sec-plan' title='Link' class={ active: basename==='Link' })=ctx.plan
           li.nav-item
-            a.nav-link(href='#sec-plan' title='Link' class={ active: basename==='Link' })=ctx.plan
-          li.nav-item
-            a.nav-link(href='#contact-form' title='Link' class={ active: basename==='Link' })=ctx.contact16
+            a.nav-link(href='./index.html#sec-contact' title='Link' class={ active: basename==='Link' })=ctx.contact16
           if locale === 'zh'
             li.nav-item
               a.nav-link(href='../en/index.html' title='Link' class={ active: basename==='Link' }) EN

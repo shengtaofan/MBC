@@ -1,17 +1,24 @@
 block footer
 footer.py-3
-  address.container
-    ul.list-unstyled.gy-3
-      li
-        //- strong 地址
-        a(href='' title='google maps' target='_blank' rel='noreferrer noopener nofollow') 臺北市和平西路一段15之1號3樓
-      li
-        //- strong 電話
-        a(href='mailto:master.builder.tw@gmail.com' title='') master.builder.tw@gmail.com
+  address.container.fz-14
+    .flexbox.J-ctr.J-l-between.a-end.gy-3
+      .sp-auto.sp-l-5
+        h6.fz-14 #{ $('content16') }
+      .sp-auto.sp-l-7
+        ul.list-unstyled.gy-3.t-ctr.t-l-right
+          li
+            a(href='https://goo.gl/maps/Qz8CnewuQLUxABA48' title='google maps' target='_blank' rel='noreferrer noopener nofollow') #{ $('address') }
+          li
+            a(href='mailto:master.builder.tw@gmail.com' title='email') master.builder.tw@gmail.com
       //- li
         strong 電話
         a(href='tel:' title='')=headerH1
-
+//- .fixed-right
+  .hidden.block-xl
+    img.line-icon(src=require('./img/line.png') width='60' height='60' alt='Official Line account' title='Official Line account' loading='lazy')
+    img.qr-code(src=require('./img/lineQRcode.png') width='360' height='360' alt='Official Line account' title='LINE QR code' loading='lazy')
+  a.hidden-xl(href='https://lin.ee/WNzQjhL')
+    img(src=require('./img/joinLine.png') width='116' height='36' title='加入好友' alt='加入好友' loading='lazy')
 //- nav.fixed-right
   ul.nav.col.a-center
     li.nav-item

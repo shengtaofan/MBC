@@ -1,0 +1,44 @@
+.grid
+  display: grid
+  grid-template-columns: repeat(12, minmax(0, 1fr))
+  gap: 1rem
+.cell
+  position: relative
+  grid-column: 1 / -1
+
+@each $breakpoint in map-keys($grid-breakpoints)
+  +media-breakpoint-up($breakpoint)
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints)
+    @each $size, $length in $spacers
+      .gap#{$infix}-#{$size}
+        gap: $length
+      .r-gap#{$infix}-#{$size}
+        row-gap: $length
+      .c-gap#{$infix}-#{$size}
+        column-gap: $length
+    @each $prop, $abbrev in (column: c, row: r)
+      .g#{$abbrev}#{$infix}-auto
+        grid-#{$prop}: auto
+      .g#{$abbrev}s#{$infix}-auto
+        grid-#{$prop}-start: auto
+      .g#{$abbrev}e#{$infix}-auto
+        grid-#{$prop}-end: auto
+      .g#{$abbrev}s#{$infix}-n1
+        grid-#{$prop}-start: -1
+      .g#{$abbrev}e#{$infix}-n1
+        grid-#{$prop}-end: -1
+      .g#{$abbrev}#{$infix}-full
+        grid-#{$prop}: 1 / -1
+      @for $n from 1 through 13
+        // .t#{$abbrev}#{$infix}-#{$n}
+        //   grid-template-#{$prop}s: repeat($n, minmax(0, 1fr))
+        .g#{$abbrev}#{$infix}-#{$n}
+          grid-#{$prop}: span $n / span $n
+        .g#{$abbrev}s#{$infix}-#{$n}
+          grid-#{$prop}-start: $n
+        .g#{$abbrev}e#{$infix}-#{$n}
+          grid-#{$prop}-end: $n
+        .g#{$abbrev}s-span#{$infix}-#{$n}
+          grid-#{$prop}-start: span $n
+        .g#{$abbrev}e-span#{$infix}-#{$n}
+          grid-#{$prop}-end: span $n

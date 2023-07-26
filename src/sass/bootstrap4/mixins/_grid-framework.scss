@@ -14,7 +14,7 @@
   @if $columns > 0 {
     // Allow columns to stretch full width below their breakpoints
     // @for $i from 1 through $columns {
-      .sp,[class*=sp-] {
+      .sp,[class^=sp-] {
         @extend %grid-column;
       }
     // }

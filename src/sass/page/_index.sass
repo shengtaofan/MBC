@@ -3,15 +3,15 @@
   background-image: linear-gradient(to bottom, rgba($body-bg, .6) 50%, $body-bg 95%), var(--bg-url)
   background-repeat: no-repeat
   background-position: center, center
-
-
-
 .bg-back-filter
   height: 10rem
   padding: 1.5rem
   backdrop-filter: blur(3px)brightness(.3)
-.two-col-bg
-  background-image: linear-gradient($black, transparent 10%, transparent 90%, $black)
+.two-col-bg-top
+  background-image: linear-gradient(#080808, rgba(#080808, .3) 15%, rgba(#080808, .3) 85%, $black)
+  backdrop-filter: blur(3px)
+.two-col-bg-bottom
+  background-image: linear-gradient($black, rgba(#080808, .3) 15%, rgba(#080808, .3) 85%, $body-bg)
   backdrop-filter: blur(3px)
 
 .bg-attachment
@@ -19,8 +19,19 @@
 .bg-filter
   backdrop-filter: blur(5px)brightness(.2)
 
-+media-breakpoint-up(s)
-  .two-col-bg
+.line-pc
+  display: none
+.fixed-right
+  position: fixed
+  right: 0
+  bottom: 0
+  transform: translate(100%, 100%)scale(0)
+  transition: transform .3s
+  .line-join-text
+    display: none
++media-breakpoint-up(m)
+  .two-col-bg-top,
+  .two-col-bg-bottom
     backdrop-filter: blur(0)
   .lg-tertiary
     background-image: linear-gradient(to left, $tertiary 50%, transparent)
@@ -35,3 +46,31 @@
   .bg-back-filter
     height: 20rem
     padding: 4rem 1.5rem
+  .line-pc
+    display: block
+  .line-icon
+    display: none
+  .line-mobile
+    display: none
+  .qr-code
+    transform-origin: bottom right
+    transition: transform .2s, opacity .2s
+  .fixed-right
+    top: 85%
+    bottom: auto
+    .line-icon
+      display: inline
+    .qr-code
+      position: absolute
+      right: 30px
+      bottom: 30px
+      opacity: 0
+      transform: scale(0)
+
+    &:hover
+      .line-icon
+        opacity: 0
+        transform: scale(0)
+      .qr-code
+        opacity: 1
+        transform: scale(1)

@@ -142,7 +142,7 @@ $('#download').on('click', function (e) {
   }`
   console.log(seoStr)
   localStorage.setItem('seo', JSON.stringify(seo))
-  this.href = `data:text/plain;charset=utf-8,${encodeURIComponent(seoStr)}`
+  this.href = `data:txt/plain;charset=utf-8,${encodeURIComponent(seoStr)}`
 })
 
 const seo = JSON.parse(localStorage.getItem('seo'))

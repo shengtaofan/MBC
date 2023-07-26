@@ -1,165 +1,207 @@
 extends ./template/layout.pug
 block local
   - headerH1 = true
+  - const substringLength = locale === 'en' ? 19 : 4
   -
     const form = [
-      { id: 'name', label: ctx.name, placeholder: '請輸入您的姓名', type: 'text' },
-      { id: 'tel', label: ctx.tel, placeholder: '請輸入您的電話', type: 'tel' },
-      { id: 'mail', label: ctx.email, placeholder: '請輸入您的E-MAIL', type: 'email' },
-      { id: 'subject', label: ctx.subject, placeholder: '請輸入您的問題', type: 'text' }
+      { id: 'name', label: $('name'), placeholder: $('placeholder'), type: 'text' },
+      { id: 'tel', label: $('tel'), placeholder: $('placeholder1'), type: 'tel' },
+      { id: 'mail', label: $('email'), placeholder: $('placeholder2'), type: 'email' },
+      { id: 'subject', label: $('subject'), placeholder: $('placeholder3'), type: 'text' }
     ]
-block style
-  style.
 
 block body
   section.banner(style=`--bg-url:url(${require('./img/rudder.jpg')})`)
-    .container.fz-32
-      h1.fs-64.mb-6=ctx.introduction1
-      .flexbox
-        .sp-l-6
-          p=ctx.content1
-  #sec-systemic.section.bg-pattern.py-5
+    .container
+      h2.fs-64 #{ $('catch1') }
+        br
+        |#{ $('catch2') }
+
+  section.bg-attachment(style!='background-image:url('+require('./img/rudder2.jpg')+');')
+    .bg-filter
+      .container.py-5
+        .flexbox.J-between.gy-5
+          .sp-l-7
+            h2.fz-40 #{ $('introduction1') }
+            p.fz-24 #{ $('content1') }
+          .sp-l-3
+            h3.fz-32.mb-3.t-ctr #{ $('alliance4') }
+            ul.list-unstyled.fz-20.t-ctr
+              each a in $('content4')
+                li=a
+
+  section.bg-pattern.py-5
     .container.t-ctr.py-5.fz-24
       .flexbox.J-ctr.gy-5.g-l-5
-        .sp-xl-8
-          h2.fz-40.mb-5=ctx.strength5
-          p=ctx.content5
+        .sp-xxl-8
+          h2.fz-40.mb-5 #{ $('strength5') }
+          p #{ $('content5') }
         .sp-12
         .sp-l-6.sp-xl-3
           .bg-cover(style!='background-image:url('+require('./img/b1.jpg')+');')
             .bg-back-filter
-              h3.fz-24=ctx.benefit6
-              p=ctx.content6
+              h3.fz-24 #{ $('benefit6') }
+              p #{ $('content6') }
         .sp-l-6.sp-xl-3
           .bg-cover(style!='background-image:url('+require('./img/b3.jpg')+');')
             .bg-back-filter
-              h3.fz-24=ctx.benefit7
-              p=ctx.content7
+              h3.fz-24 #{ $('benefit7') }
+              p #{ $('content7') }
         .sp-l-6.sp-xl-3
           .bg-cover(style!='background-image:url('+require('./img/b2.jpg')+');')
             .bg-back-filter
-              h3.fz-24=ctx.benefit8
-              p=ctx.content8
+              h3.fz-24 #{ $('benefit8') }
+              p #{ $('content8') }
         .sp-l-6.sp-xl-3
           .bg-cover(style!='background-image:url('+require('./img/b4.jpg')+');')
             .bg-back-filter
-              h3.fz-24=ctx.benefit9
-              p=ctx.content9
+              h3.fz-24 #{ $('benefit9') }
+              p #{ $('content9') }
+
   section#sec-team.rel.fz-24.bg-tertiary
     .container-fluid.px-0
       .flexbox.gx-0
-        .sp-s-6.abs.top-0.bottom-0
-          img.img-cover(src=require('./img/team.jpg') width='100%' height='100%' alt=ctx.team2 title=ctx.team2 loading='eager')
-      .container.two-col-bg.lg-tertiary
+        .sp-m-6.abs.top-0.bottom-0
+          img.img-cover(src=require('./img/team.jpg') width='100%' height='100%' alt=$('team2') title=$('team2') loading='eager')
+      .container-l.two-col-bg-top.lg-tertiary
         .flexbox.J-end
-          .sp-s-6.sp-xl-4.spr-xl-1.py-5
-            h2.fz-40.mb-l-4=ctx.team2
-            p=ctx.content2
+          .sp-m-6.py-5(class=locale==='en' ? 'sp-xl-6' : 'sp-xl-4')
+            h2.fz-40.mb-l-4 #{ $('team2') }
+            p #{ $('content2') }
 
   section#sec-publication.rel.fz-24.bg-primary
     .container-fluid.px-0
       .flexbox.gx-0.J-end
-        .sp-s-6.abs.top-0.bottom-0
-          img.img-cover(src=require('./img/publication.jpg') width='100%' height='100%' alt=ctx.publication3 title=ctx.publication3 loading='eager')
-      .container.two-col-bg.lg-primary
+        .sp-m-6.abs.top-0.bottom-0
+          img.img-cover(src=require('./img/publication.jpg') width='100%' height='100%' alt=$('publication3') title=$('publication3') loading='eager')
+      .container-l.two-col-bg-bottom.lg-primary
         .flexbox
-          .sp-s-6.sp-xl-4.spl-xl-1.py-5
-            h2.fz-40.mb-l-4=ctx.publication3
-            p=ctx.content3
-
-  section.bg-attachment.fz-24(style!='background-image:url('+require('./img/rudder2.jpg')+');')
-    .bg-filter
-      .container.py-5
-        h3.mb-3=ctx.alliance4
-        ul.list-inline
-          each a in ctx.content4
-            li.list-inline-item=a
+          .sp-m-6.py-5(class=locale==='en' ? 'sp-xl-6' : 'sp-xl-4')
+            h2.fz-40.mb-l-4 #{ $('publication3') }
+            p #{ $('content3') }
 
   section#sec-plan
     .container.py-5
-      h2.fz-40.t-ctr.mb-5=ctx.plan
-      .flexbox.J-ctr.gy-3.gy-l-5.mb-6
+      h2.fz-40.t-ctr.mb-5 #{ $('plan') }
+
+      .flexbox.J-ctr.gy-3.gy-l-5
         .sp-9.sp-s-6.sp-m-5.sp-xl-3
-          .bg-darken.py-3.py-xl-5
+          .lg-price.py-3.py-xl-5
             .t-ctr.fw-7
-              h3.fz-24.lh-xxl-tight(style='height:90px')=ctx.leader11
+              h3.fz-24.lh-xxl-tight(style='height:90px') #{ $('leader11') }
               p.pr-1.pt-4.py-l-5.fz-32.t-tertiary.t-right(style='height: 145px')
                 sup=ctx.price11.substring(0,2)
                 =ctx.price11.substring(2)
-                sub=ctx.perHour
+                sub #{ $('perHour') }
             ul.list-group.list-group-flush.fz-20
-              each txt in ctx.content11
-                li.list-group-item=txt
+              li.list-group-item !{ $('price14k') }
+              each txt in $('package')
+                li.list-group-item!=txt
         .sp-9.sp-s-6.sp-m-5.sp-xl-3
-          .bg-darken.py-3.py-xl-5
+          .lg-price.py-3.py-xl-5
             .t-ctr.fw-7
-              h3.fz-24.lh-xxl-tight(style='height:90px')=ctx.boss12
+              h3.fz-24.lh-xxl-tight(style='height:90px') #{ $('boss12') }
                 br
-                small.fz-16=ctx.size12.substring(0, 4)
+                small.fz-16=ctx.size12.substring(0, substringLength)
                 br
-                small.fz-16=ctx.size12.substring(5)
+                small.fz-16=ctx.size12.substring(substringLength)
               p.pr-1.pt-4.py-l-5.fz-32.t-tertiary.t-right(style='height: 145px')
                 sup=ctx.price12.substring(0,2)
                 =ctx.price12.substring(2)
-                sub=ctx.perHour
+                sub #{ $('perHour') }
             ul.list-group.list-group-flush.fz-20
-              each txt in ctx.content12
-                li.list-group-item=txt
+              li.list-group-item !{ $('price20k') }
+              each txt in $('package')
+                li.list-group-item!=txt
         .sp-9.sp-s-6.sp-m-5.sp-xl-3
-          .bg-darken.py-3.py-xl-5
+          .lg-price.py-3.py-xl-5
             .t-ctr.fw-7
-              h3.fz-24.lh-xxl-tight(style='height:90px')=ctx.boss13
+              h3.fz-24.lh-xxl-tight(style='height:90px') #{ $('boss13') }
                 br
-                small.fz-16=ctx.size13.substring(0, 4)
+                small.fz-16=ctx.size13.substring(0, substringLength)
                 br
-                small.fz-16=ctx.size13.substring(5)
+                small.fz-16=ctx.size13.substring(substringLength)
               p.pr-1.pt-4.py-l-5.fz-32.t-tertiary.t-right(style='height: 145px')
                 sup=ctx.price13.substring(0,2)
                 =ctx.price13.substring(2)
-                sub=ctx.perHour
+                sub #{ $('perHour') }
             ul.list-group.list-group-flush.fz-20
-              each txt in ctx.content13
-                li.list-group-item=txt
+              li.list-group-item !{ $('price30k') }
+              each txt in $('package')
+                li.list-group-item!=txt
         .sp-9.sp-s-6.sp-m-5.sp-xl-3
-          .bg-darken.py-3.py-xl-5
+          .lg-price.py-3.py-xl-5
             .t-ctr.fw-7
-              h3.fz-24.lh-xxl-tight(style='height:90px')=ctx.boss14
+              h3.fz-24.lh-xxl-tight(style='height:90px') #{ $('boss14') }
                 br
-                small.fz-16=ctx.size14.substring(0, 4)
+                small.fz-16=ctx.size14.substring(0, substringLength)
                 br
-                small.fz-16=ctx.size14.substring(5)
+                small.fz-16=ctx.size14.substring(substringLength)
               p.pr-1.pt-4.py-l-5.fz-32.t-tertiary.t-right(style='height: 145px')
                 sup=ctx.price14.substring(0,2)
                 =ctx.price14.substring(2)
-                sub=ctx.perHour
+                sub #{ $('perHour') }
             ul.list-group.list-group-flush.fz-20
-              each txt in ctx.content14
-                li.list-group-item=txt
-      h3.fz-24.t-ctr=ctx.payments11
-      .flexbox.J-ctr
-        ul.list-unstyled.fz-20
-          li 戶名 : 創業家顧問股份有限公司
-          li 帳號 : 602540375855
-          li 中國信託
-          li 銀行代號 : 822
-          li 分行別 : 大安分行
-  section.bg-gray-6
+              li.list-group-item !{ $('price40k') }
+              each txt in $('package')
+                li.list-group-item!=txt
+      p.fz-16.mb-6.t-dark-red.fw-4.t-right #{ $('discount') }
+      h5.fz-24 #{ $('title15') }
+
+      ul.list-unstyled.fz-20
+        li #{ $('content15') }
+        li #{ $('account') }
+        li #{ $('bank') }
+        li #{ $('branch') }
+  section#sec-contact.lg-gray-white
+    //- form#contact-form.container.py-5(action='./' novalidate)
+    //-   h2.fz-40.t-ctr.mb-5 #{ $('contact16') }
+      //- .flexbox.J-ctr.gy-3.gy-l-5
+      //-   label.sp-form-label.sp-l-3.t-l-right(for='know') #{ $('howToKnow') }
+      //-   .sp-l-5.spr-l-2.sp-xxl-4.spr-xxl-3
+      //-     select#know.form-control(name='know' required)
+      //-       each what, i in ctx.bywhat
+      //-         option(value='' disabled=!i selected=!i)=what
+
+      //-   each input in form
+      //-     label.sp-form-label.sp-l-3.t-l-right(for=input.id)=input.label
+      //-     .sp-l-5.spr-l-2.sp-xxl-4.spr-xxl-3
+      //-       input.form-control(type=input.type id=input.id name=input.id placeholder=input.placeholder required)
+
+      //-   label.sp-form-label.sp-l-3.t-l-right(for='msg') #{ $('msg') }
+      //-   .sp-l-5.spr-l-2.sp-xxl-4.spr-xxl-3
+      //-     textarea#msg.form-control(rows='4' name='msg' placeholder=$('placeholder4') required)
+      //-   .sp-l-3
+      //-     button.btn.btn-tertiary.btn-block.btn-lg.fw-7(type='submit') #{ $('submit') }
     form#contact-form.container.py-5(action='./' novalidate)
-      h2.fz-40.t-ctr.mb-5=ctx.contact16
-      .flexbox.J-ctr.gy-3.gy-l-5
-        label.sp-form-label.sp-l-3.t-l-right(for='know')=ctx.howToKnow
-        .sp-l-5.spr-l-2.sp-xxl-4.spr-xxl-3
+      .grid.tc-12.r-gap-m-5
+        .cell.gcs-l-2.gce-l-7
+          h2.fz-40.t-ctr #{ $('contact16') }
+        label.cell.sp-form-label.gc-m-3.gcs-l-1.gce-l-3.t-m-right(for='know') #{ $('howToKnow') }
+        .cell.gc-m-8.gcs-l-3.gce-l-7
           select#know.form-control(name='know' required)
             each what, i in ctx.bywhat
-              option(value=what disabled=!i selected=!i)=what
+              option(value='' disabled=!i selected=!i)=what
 
         each input in form
-          label.sp-form-label.sp-l-3.t-l-right(for=input.id)=input.label
-          .sp-l-5.spr-l-2.sp-xxl-4.spr-xxl-3
+          label.cell.sp-form-label.gc-m-3.gcs-l-1.gce-l-3.t-m-right(for=input.id)=input.label
+          .cell.gc-m-8.gcs-l-3.gce-l-7
             input.form-control(type=input.type id=input.id name=input.id placeholder=input.placeholder required)
 
-        label.sp-form-label.sp-l-3.t-l-right(for='msg') 留言信息
-        .sp-l-5.spr-l-2.sp-xxl-4.spr-xxl-3
-          textarea#msg.form-control(rows='4' name='msg' required)
-        .sp-l-3
-          button.btn.btn-block.btn-tertiary(type='submit')=ctx.submit
+        label.cell.sp-form-label.gc-m-3.gc-m-3.gcs-l-1.gce-l-3.t-m-right(for='msg') #{ $('msg') }
+        .cell.gc-m-8.gcs-l-3.gce-l-7
+          textarea#msg.form-control(rows='4' name='msg' placeholder=$('placeholder4') required)
+        .cell.gcs-s-4.gce-s-10.gcs-l-4.gce-l-6
+          button.btn.btn-tertiary.btn-block.btn-lg.fw-7(type='submit') #{ $('submit') }
+
+        .cell.t-ctr.gcs-l-7.gce-l-13.grs-l-1.gre-span-l-6.as-l-ctr
+          .js-line.fixed-right.pt-5
+            .line-pc
+              img.line-icon(src=require('./img/line.png') width='60' height='60' alt='Official Line account' title='Official Line account' loading='lazy')
+              img.qr-code(src=require('./img/lineQRcode.png') width='360' height='360' alt='Official Line account' title='LINE QR code' loading='lazy')
+              br
+              span.line-join-text 掃描 Line QR Code 好友立即連繫我們
+            a.line-mobile(href='https://lin.ee/WNzQjhL')
+              img.line-join-icon(src=require('./img/joinLine.png') width='116' height='36' title='加入好友' alt='加入好友' loading='lazy')
+              br
+              span.line-join-text 加入Line好友立即連繫我們

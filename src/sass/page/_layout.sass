@@ -3,15 +3,74 @@ html
 body
   padding-top: 60px
 // .logo
+header
+  transition: background-color .3s
 
-// .slide-down
-//   .logo
 
 // .fixed-right
 //   position: fixed
-//   top: 50%
 //   right: 0
-//   transform: translateX(100%)scale(0)
-//   transition: transform .5s
-//   &.show
-//     transform: translateX(0) scale(1)
+//   bottom: 0
+//   transform: translate(100%, 100%)scale(0)
+//   transition: transform .3s
+//   .line-icon
+//     transition: transform .2s, opacity .2s
+//   .qr-code
+//     transform-origin: bottom right
+//     transition: transform .2s, opacity .2s
+//   &:hover
+//     .line-icon
+//       opacity: 0
+//       transform: scale(0)
+//       animation-play-state: paused
+//     .qr-code
+//       opacity: 1
+//       transform: scale(1)
+
+.slide-down
+  header
+    background-color: transparent
+  .fixed-right
+    transform: translate(0, 0)scale(1)
+    .line-icon
+      animation: bouncing 5s infinite
+
+header,
+.navbar-show header
+  background-color: $primary
+
+// .qr-code
+//   position: absolute
+//   right: 45px
+//   bottom: 45px
+//   opacity: 0
+//   transform: scale(0.25)
+
+@keyframes bouncing
+  84%
+    transform: translateY(0)
+  86%
+    transform: translateY(15px)
+  89%
+    transform: translateY(-5px)
+  94%
+    transform: translateY(10px)
+  100%
+    transform: translateY(0)
+
+
+// +media-breakpoint-up(xl)
+//   .fixed-right
+//     top: 85%
+//     bottom: auto
+
+
+
+// +media-breakpoint-down(s)
+//   .line-icon
+//     width: 45px
+//     height: 45px
+//   .fixed-right
+//     &:hover
+//       .qr-code
+//         transform: scale(.8)
