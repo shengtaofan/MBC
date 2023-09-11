@@ -8,13 +8,14 @@
   padding: 1.5rem
   backdrop-filter: blur(3px)brightness(.3)
 .two-col-bg-top
-  background-image: linear-gradient(#080808, rgba(#080808, .3) 15%, rgba(#080808, .3) 85%, $black)
+  background-image: linear-gradient(#080808, rgba(#080808, .5) 15%, rgba(#080808, .5) 85%, $black)
   backdrop-filter: blur(3px)
 .two-col-bg-bottom
-  background-image: linear-gradient($black, rgba(#080808, .3) 15%, rgba(#080808, .3) 85%, $body-bg)
+  background-image: linear-gradient($black, rgba(#080808, .4) 15%, rgba(#080808, .4) 85%, $body-bg)
   backdrop-filter: blur(3px)
 
 .bg-attachment
+  background-position: center
   background-attachment: fixed
 .bg-filter
   backdrop-filter: blur(5px)brightness(.2)
@@ -24,19 +25,55 @@
 .fixed-right
   position: fixed
   right: 0
-  bottom: 0
+  bottom: 2rem
   transform: translate(100%, 100%)scale(0)
   transition: transform .3s
   .line-join-text
     display: none
+.price
+  height: 145px
+  color: $tertiary
+  font-size: fz-rwd(26, 32, 576, 1520)
+  text-align: right
+  &:before
+    content: 'NT$'
+    font-size: 16px
+    vertical-align: text-top
+  // &:after
+  //   content: '/Hr'
+  //   font-size: 16px
+  //   vertical-align: text-bottom
+// .text-round-img
+//   width: 33%
+//   height: auto
+//   &.fl-right
+//     margin-left: 1em
+//   &.fl-left
+//     margin-right: 1em
+
+.img-slice
+  border-radius: $border-radius-sm
+  object-fit: cover
+  aspect-ratio: 1
+  &.pos-1
+    object-position: 0 0
+  &.pos-2
+    object-position: 0 66.7%
+  &.pos-3
+    object-position: 0 33.3%
+  &.pos-4
+    object-position: 0 100%
+
 +media-breakpoint-up(m)
   .two-col-bg-top,
   .two-col-bg-bottom
     backdrop-filter: blur(0)
   .lg-tertiary
-    background-image: linear-gradient(to left, $tertiary 50%, transparent)
+    background-image: linear-gradient(to left, transparent, rgba($tertiary, .3) 20%, $tertiary 50%, transparent)
   .lg-primary
-    background-image: linear-gradient(to right, $primary 50%, transparent)
+    background-image: linear-gradient(to right, transparent, rgba($primary, .3) 20%, $primary 50%, transparent)
+  // .text-round-img
+  //   width: 60%
 
 +media-breakpoint-up(l)
   .banner
@@ -54,10 +91,9 @@
     display: none
   .qr-code
     transform-origin: bottom right
-    transition: transform .2s, opacity .2s
+
   .fixed-right
-    top: 85%
-    bottom: auto
+    bottom: 5%
     .line-icon
       display: inline
     .qr-code
@@ -66,8 +102,9 @@
       bottom: 30px
       opacity: 0
       transform: scale(0)
+      transition: transform .2s, opacity .2s
 
-    &:hover
+    .line-pc:hover
       .line-icon
         opacity: 0
         transform: scale(0)

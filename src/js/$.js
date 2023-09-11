@@ -112,6 +112,21 @@ export const siblings = ['siblings', function () {
 export const children = ['children', function () {
   return this.flatMap(e => $(e.children))
 }]
+export const find = ['find', function (selector, el) {
+  if (selector === undefined) selector = ''
+  if (el === undefined) el = $()
+  if (this.length) {
+    const eachChildren = this.children()
+    // console.log(eachChildren)
+
+    this.merge(el, eachChildren)
+    return this.children().find(selector, el)
+  }
+  if (selector) {
+    return this.filterEl(el, selector)
+  }
+  return this.noReapted(el)
+}]
 
 export const parent = ['parent', function () {
   return this.map(e => e.parentElement).filter(e => {
@@ -124,7 +139,7 @@ export const parents = ['parents', function (selector, el) {
   if (el === undefined) el = $()
   if (this.length) {
     const eachParent = this.parent()
-    el = el.concat(eachParent)
+    this.merge(el, eachParent)
     return this.parent().parents(selector, el)
   }
   if (selector) {
@@ -195,7 +210,8 @@ export const height = ['height', function (value) {
     if (el === window) {
       val = innerHeight
     }
-    if (el.nodeType === 9) {
+
+    if ([1, 9].includes(el.nodeType)) {
       val = el.clientHeight
     }
     return el
@@ -211,7 +227,7 @@ export const width = ['width', function (value) {
     if (el === window) {
       val = innerWidth
     }
-    if (el.nodeType === 9) {
+    if ([1, 9].includes(el.nodeType)) {
       val = el.clientWidth
     }
     return el
@@ -222,10 +238,11 @@ export const width = ['width', function (value) {
 }]
 
 export const bounding = ['bounding', function (prop) {
+  const bound = this[0].getBoundingClientRect()
   if (prop) {
-    return this[0].getBoundingClientRect()[prop]
+    return bound[prop]
   }
-  return this[0].getBoundingClientRect()
+  return bound
 }]
 
 export const scrollTop = ['scrollTop',
@@ -336,6 +353,10 @@ $.use = function (...methods) {
 
     noReapted (el) {
       return el.filter((item, pos, self) => self.indexOf(item) === pos)
+    }
+
+    merge (arr1, arr2) {
+      Array.prototype.push.apply(arr1, arr2)
     }
 
     changeClass (action, className) {

@@ -1,0 +1,34 @@
+/* filename:base */ // sass-lint:disable-line no-css-comments
+@import './bootstrap-configuration';
+@import './bootstrap4/reboot';
+@import './bootstrap4/type';
+@import './bootstrap4/images';
+@import './bootstrap4/grid';
+@import './bootstrap4/forms';
+@import './bootstrap4/buttons';
+@import './bootstrap4/transitions';
+@import './bootstrap4/nav';
+@import './bootstrap4/navbar';
+@import './bootstrap4/list-group';
+@import './bootstrap4/carousel';
+/* filename:utilities */ // sass-lint:disable-line no-css-comments
+@import './bootstrap4/utilities';
+/* filename:style */ // sass-lint:disable-line no-css-comments
+@import './helper/inlineSVG';
+@import './helper/bg-positions';
+@import './helper/scrollbar';
+@import './helper/component';
+@import './helper/animate';
+
+@import './helper/grid';
+@import './page/fs';
+@import './page/layout';
+@import './page/index';
+@import './page/variables';
+@import './page/page';
+.img-cover {
+  object-fit: cover;
+}
+.ratio-1 {
+  aspect-ratio: 1;
+}

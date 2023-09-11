@@ -1,6 +1,7 @@
 // color
-.t-dark-red
-  color: #e81717
+// .t-dark-red
+//   color: #e81717
++text-emphasis-variant('.t-dark-red', #e81717, true)
 // font-size
 .fs-64
   font-size: fz-rwd(44, 64, 576, 1520)
@@ -19,8 +20,6 @@
 // +text-emphasis-variant('.t-gray-c', #ccc, true)
 +text-emphasis-variant('.line-join-text', #06c755, true)
 
-.lg-gray-white
-  background-image: linear-gradient(#666 967px, $white 967px)
 .bg-gray-3
   background-color: #000
 .bg-gray-6
@@ -30,19 +29,50 @@
   background-position: center left
   background-size: 390px 810px
 
-.bg-pattern
-  background-color: #080808
-  background-image: repeating-linear-gradient(45deg, #141414 0, #141414 10%, transparent 0, transparent 50%), repeating-linear-gradient(135deg, #141414 0, #141414 10%, transparent 0, transparent 50%)
-  background-size: 3em 3em
 
+.bg-pattern
+  background-image: radial-gradient(circle at 100%, #141414 40%, transparent 45%, $black 55%)
+
+
+// radial-gradient(circle at left, $black, $black 50%, transparent 51%, $black 51%, $black 90%, transparent 93%, $black 93%),
+
+$lg-pos: 550px
+$lg-h: 150px
 .lg-pink-gold
-  $pink: #ffdeca
-  $pink2: #de7345
-  background-image: linear-gradient(346deg - 180, $pink, $white 16%, $pink 21%, $white 24%, $pink2 27%, $pink 36%, $white 45%, $white 60%, $pink 72%, $white 80%, $pink 84%, $pink2)
+  $metal: #ffdeca
+  $metal2: #de7345
+  // linear-gradient(189deg, transparent 372px, lighten($primary, 10%) 373px),
+  background-image: linear-gradient(190deg, transparent 219px, lighten($primary, 10%) 200px), linear-gradient(170deg, #eaeaea, $metal 0.1 * $lg-h, #eaeaea 0.16 * $lg-h, $metal 0.21 * $lg-h, #eaeaea 0.24 * $lg-h, $metal2 0.27 * $lg-h, $metal 0.36 * $lg-h, #eaeaea 0.45 * $lg-h, #eaeaea 0.6 * $lg-h, $metal 0.72 * $lg-h, #eaeaea 0.8 * $lg-h, $metal 0.84 * $lg-h, $white $lg-h)
+  .price-title
+    color: rgba(#380d00, .64)
+    text-shadow: 1px 1px 0 $white
+
+.lg-white-gold
+  $metal: #ffdea1
+  $metal2: #736445
+  background-image: linear-gradient(190deg, transparent 219px, lighten($primary, 10%) 200px), linear-gradient(170deg, #eaeaea, $metal 0.1 * $lg-h, #eaeaea 0.16 * $lg-h, $metal 0.21 * $lg-h, #eaeaea 0.24 * $lg-h, $metal2 0.27 * $lg-h, $metal 0.36 * $lg-h, #eaeaea 0.45 * $lg-h, #eaeaea 0.6 * $lg-h, $metal 0.72 * $lg-h, #eaeaea 0.8 * $lg-h, $metal 0.84 * $lg-h, $white $lg-h)
+  .price-title
+    color: rgba(#525222, .72)
+    text-shadow: 1px 1px 0 #ffdeca
+
+.lg-yellow-gold
+  $metal: #ffc373
+  $metal2: #a17434
+  background-image: linear-gradient(190deg, transparent 219px, lighten($primary, 10%) 200px), linear-gradient(170deg, #eaeaea, $metal 0.1 * $lg-h, #eaeaea 0.16 * $lg-h, $metal 0.21 * $lg-h, #eaeaea 0.24 * $lg-h, $metal2 0.27 * $lg-h, $metal 0.36 * $lg-h, #eaeaea 0.45 * $lg-h, #eaeaea 0.6 * $lg-h, $metal 0.72 * $lg-h, #eaeaea 0.8 * $lg-h, $metal 0.84 * $lg-h, $white $lg-h)
+  .price-title
+    color: rgba(#492d15, .72)
+    text-shadow: 1px 1px 0 $white
+
+.lg-gold
+  $metal: #ffde45
+  $metal2: #452100
+  background-image: linear-gradient(190deg, transparent 219px, lighten($primary, 10%) 200px), linear-gradient(170deg, #eaeaea, $metal 0.1 * $lg-h, #eaeaea 0.16 * $lg-h, $metal 0.21 * $lg-h, #eaeaea 0.24 * $lg-h, $metal2 0.27 * $lg-h, $metal 0.36 * $lg-h, #eaeaea 0.45 * $lg-h, #eaeaea 0.6 * $lg-h, $metal 0.72 * $lg-h, #eaeaea 0.8 * $lg-h, $metal 0.84 * $lg-h, $white $lg-h)
+  .price-title
+    color: rgba($black, .72)
+    text-shadow: 1px 1px 0 $white
 
 +media-breakpoint-up(m)
-  .lg-gray-white
-    background-image: linear-gradient(#666 878px, $white 878px)
+  .grid-text
+    padding: 0.5rem 1rem
+    background-color: rgba($primary, .5)
 +media-breakpoint-up(l)
-  .lg-gray-white
-    background-image: linear-gradient(90deg, #666 calc(50% + 8px), $white calc(50% + 8px))

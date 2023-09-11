@@ -1,20 +1,18 @@
 import path from 'path'
 import webpack from 'webpack'
-import HtmlPlugin from 'html-webpack-plugin'
 import SVGSpritePlugin from 'svg-sprite-loader/plugin.js'
 import Server from 'webpack-dev-server'
-import { importInlineSVG, cachePlugins, langs } from './import.mjs'
+import { cachePlugins, langs, defaultLocale } from './import.mjs'
 const { DefinePlugin } = webpack
-importInlineSVG()
 
-export const primary = 'transparent'
+export const primary = '#003366'
 const EXT = process.env.EXTENSION
 const common = {
   context: path.resolve('src'),
-  entry: { script: '/js/script.js', demo: '/js/demo.js' },
+  entry: { script: '/js/script.js' },
   output: {
     path: path.resolve('dist'),
-    filename: 'js/[name].js',
+    filename: 'js/[name][contenthash:4].js',
     chunkFilename: 'js/[name].js' // name保留 /* webpackChunkName:'name' */
   },
   module: {
@@ -73,21 +71,24 @@ const common = {
       env: JSON.stringify(process.env.NODE_ENV),
       ext: JSON.stringify(EXT),
       langs: JSON.stringify(langs),
+      defaultLocale: JSON.stringify(defaultLocale),
       isProd: `${process.env.NODE_ENV === 'production'}`,
       isDev: `${process.env.NODE_ENV === 'development'}`,
-      primary: '"#000"',
-      project: '"BeatyTechPlatform"',
-      baseDir: '"/test/BeatyTechPlatform"',
+      primary: "'"+primary+"'",
+      project: '"MBC"',
+      baseDir: '""',
       projectName: '"創業家"',
-      testingDomain: '"https://whatlife.no-ip.org"',
-      testingURL: '"https://whatlife.no-ip.org/test/BeatyTechPlatform"',
+      staticDomain: '"https://masterbuilder.com.tw"',
+      testingDomain: '""',
+      staticURL: '"https://shengtaofan.github.io/MBC"',
       externalIP: JSON.stringify('http://' + Server.internalIPSync('v4'))
     }),
     new SVGSpritePlugin({
       plainSprite: true,
       spriteAttrs: {
         'xmlns:xlink': null,
-        'stroke-': null
+        'stroke-': null,
+        id: null
       }
     })
   ],
@@ -103,11 +104,11 @@ const common = {
           bootstrap: 'bootstrap|bs5',
           popper: '@popperjs'
         }),
-        vendors: {
+       /*  vendors: {
           name: 'vendors',
           test: /\.m?js$/,
           priority: -10
-        },
+        }, */
         default: {
           minChunks: 2,
           priority: -20,
@@ -116,5 +117,9 @@ const common = {
       }
     }
   }
+}
+
+if(!Boolean(+process.env.OPTIMIZE)){
+  common.entry.demo = '/js/demo.js'
 }
 export default common

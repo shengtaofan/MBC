@@ -1,11 +1,13 @@
 block footer
 footer.py-3
   address.container.fz-14
-    .flexbox.J-ctr.J-l-between.a-end.gy-3
-      .sp-auto.sp-l-5
-        h6.fz-14 #{ $('content16') }
-      .sp-auto.sp-l-7
-        ul.list-unstyled.gy-3.t-ctr.t-l-right
+    .flexbox.a-end.gx-0.gy-3.lh-xxl-none.t-ctr
+      .sp-l-auto
+        img(src=require('./img/embedSVG/logo.svg') title=title alt=title width='45' height='45' loading='eager')
+      .sp-l-auto
+        h6.fz-14 !{ $('copyright') }
+      .sp-l-auto.ml-l-auto
+        ul.list-unstyled.t-l-right.gy-3
           li
             a(href='https://goo.gl/maps/Qz8CnewuQLUxABA48' title='google maps' target='_blank' rel='noreferrer noopener nofollow') #{ $('address') }
           li
@@ -13,14 +15,17 @@ footer.py-3
       //- li
         strong 電話
         a(href='tel:' title='')=headerH1
-//- .fixed-right
-  .hidden.block-xl
-    img.line-icon(src=require('./img/line.png') width='60' height='60' alt='Official Line account' title='Official Line account' loading='lazy')
-    img.qr-code(src=require('./img/lineQRcode.png') width='360' height='360' alt='Official Line account' title='LINE QR code' loading='lazy')
-  a.hidden-xl(href='https://lin.ee/WNzQjhL')
-    img(src=require('./img/joinLine.png') width='116' height='36' title='加入好友' alt='加入好友' loading='lazy')
-//- nav.fixed-right
-  ul.nav.col.a-center
-    li.nav-item
-      a.nav-link(href='' title='')
-        img.img-cover(src=require('./img/tool.png') width='' height='' alt='' title='' loading='eager' )
+.fixed-right
+  ul.list-unstyled.gy-3
+    li
+      .line-pc
+        img.line-icon(src=require('./img/line.png') width='60' height='60' alt='Official Line account' title='Official Line account' loading='lazy')
+        img.qr-code(src=require('./img/lineQRcode.png') width='360' height='360' alt='Official Line account' title='LINE QR code' loading='lazy')
+        br
+        span.line-join-text #{ $('scanQRCode') }
+      a.line-mobile(href='https://lin.ee/WNzQjhL' rel='noreferrer noopener nofollow')
+        img.line-join-icon(src=require('./img/joinLine-'+locale+'.png') width='116' height='36' title='加入好友' alt='加入好友' loading='lazy')
+        br
+        span.line-join-text #{ $('addLineFriend') }
+    li
+      a.go-top(href='#top' title='Go top') ↑

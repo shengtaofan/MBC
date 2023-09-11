@@ -7,7 +7,7 @@ mixin jsonBreadcrumb(items)
           '@type': 'ListItem',
           position: index + 1,
           name: item.n,
-          item: item.href && item.href.replace('./', testingDomain + baseDir+'/')
+          item: item.href && item.href.replace('./', staticDomain + baseDir+'/')
         }
     - jsonld.itemListElement.push(obj)
   script(type='application/ld+json')!=JSON.stringify(jsonld, null, 2)
@@ -20,7 +20,7 @@ mixin jsonCarousel(items)
       const obj = {
         '@type': 'ListItem',
         position: index + 1,
-        url: `${testingDomain + baseDir}/${product.id}.html`,
+        url: `${staticDomain + baseDir}/${product.id}.html`,
       }
     - jsonld.itemListElement.push(obj)
   script(type='application/ld+json')!=JSON.stringify(jsonld, null, 2)

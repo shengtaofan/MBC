@@ -10,7 +10,10 @@
 @import './bootstrap4/input-group';
 @import './bootstrap4/custom-forms';
 .btn-link {
+  padding-top: 0;
+  padding-bottom: 0;
   color: #666;
+  line-height: 1.75;
 }
 .counter {
   counter-reset: num;
@@ -30,7 +33,12 @@ textarea {
   margin-top: -1px;
   resize: none;
 }
-
+tr > th:first-child {
+  min-width: 250px;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .css-all-device,
 .css-customize-device,
 .css-edit-checked-show,
@@ -42,7 +50,7 @@ textarea {
   white-space: nowrap;
   thead th {
     text-align: center;
-    vertical-align: middle;
+    vertical-align: top;
   }
 }
 .css-all:has(> :checked) ~ .table-rwd .css-all-device,
@@ -70,10 +78,14 @@ textarea {
   }
   input.css-edit-checked-show {
     display: inline-block;
-    width: 450px;
+    width: 200px;
+  }
+  tr.css-edit-checked-show {
+    display: table-row;
   }
   textarea.css-edit-checked-show {
     display: block;
+    width: 228px;
   }
 }
 

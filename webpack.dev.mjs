@@ -17,24 +17,24 @@ const devConf = merge(common, {
           {
             loader: 'style-loader',
             options: {
-              insert: function insertBeforeAt(element) {
-                const parent = document.querySelector('head')
-                const target = document.querySelector('[rel="icon"]')
+              // insert: function insertBeforeAt(element) {
+              //   const parent = document.querySelector('head')
+              //   const target = document.querySelector('[rel="icon"]')
 
-                const lastInsertedElement = window._lastElementInsertedByStyleLoader
-                if (!lastInsertedElement) {
-                  target.insertAdjacentElement('afterend', element)
-                } else if (lastInsertedElement.nextSibling) {
-                  lastInsertedElement.insertAdjacentElement('afterend', element)
-                } else {
-                  parent.appendChild(element)
-                }
-                window._lastElementInsertedByStyleLoader = element
-                // setTimeout(() => {
-                //   const { id } = element.textContent.match(/\/\* filename:(?<id>.+) \*\//m).groups
-                //   element.id = id
-                // }, 500);
-              }
+              //   const lastInsertedElement = window._lastElementInsertedByStyleLoader
+              //   if (!lastInsertedElement) {
+              //     target.insertAdjacentElement('afterend', element)
+              //   } else if (lastInsertedElement.nextSibling) {
+              //     lastInsertedElement.insertAdjacentElement('afterend', element)
+              //   } else {
+              //     parent.appendChild(element)
+              //   }
+              //   window._lastElementInsertedByStyleLoader = element
+              //   // setTimeout(() => {
+              //   //   const { id } = element.textContent.match(/\/\* filename:(?<id>.+) \*\//m).groups
+              //   //   element.id = id
+              //   // }, 500);
+              // }
             }
           },
           'css-loader',
@@ -77,7 +77,7 @@ devConf.plugins.push(
   new PugLintPlugin({
     context: path.resolve('src'),
     files: '**/*.pug',
-    config: { emitError: true, ...pugrc }
+    config:  Object.assign({emitError: true}, pugrc)
   }),
   new SassLintPlugin(),
   new ESLintPlugin({

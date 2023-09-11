@@ -1,207 +1,234 @@
 extends ./template/layout.pug
 block local
   - headerH1 = true
-  - const substringLength = locale === 'en' ? 19 : 4
+  - const substringLength = locale === 'en' ? 17 : 5
   -
     const form = [
-      { id: 'name', label: $('name'), placeholder: $('placeholder'), type: 'text' },
-      { id: 'tel', label: $('tel'), placeholder: $('placeholder1'), type: 'tel' },
-      { id: 'mail', label: $('email'), placeholder: $('placeholder2'), type: 'email' },
-      { id: 'subject', label: $('subject'), placeholder: $('placeholder3'), type: 'text' }
+      { id: 'name', label: $('name'), placeholder: $('namePlaceholder'), type: 'text' },
+      { id: 'tel', label: $('tel'), placeholder: $('telPlaceholder'), type: 'tel' },
+      { id: 'mail', label: $('email'), placeholder: $('emailPlaceholder'), type: 'email' },
+      { id: 'subject', label: $('subject'), placeholder: $('subjectPlaceholder'), type: 'text' }
     ]
+  - const img = [require('./img/rudder.jpg')]
 
 block body
-  section.banner(style=`--bg-url:url(${require('./img/rudder.jpg')})`)
+  section.banner(style='--bg-url:url(/img/rudder.jpg)')
     .container
-      h2.fs-64 #{ $('catch1') }
-        br
-        |#{ $('catch2') }
+      h2.fs-64 !{ $('slogan') }
 
-  section.bg-attachment(style!='background-image:url('+require('./img/rudder2.jpg')+');')
-    .bg-filter
-      .container.py-5
-        .flexbox.J-between.gy-5
-          .sp-l-7
-            h2.fz-40 #{ $('introduction1') }
-            p.fz-24 #{ $('content1') }
-          .sp-l-3
-            h3.fz-32.mb-3.t-ctr #{ $('alliance4') }
-            ul.list-unstyled.fz-20.t-ctr
-              each a in $('content4')
-                li=a
+  section#sec-us.bg-attachment(style!='background-image:url('+require('./img/rudder2.jpg')+');')
+    .bg-filter.py-5
+      .container
+        .flexbox.J-ctr.gy-5
+          .sp-xxl-8.t-ctr
+            h2.fz-40.mb-3 #{ $('introduction') }
+            p.fz-24 #{ $('introContent') }
+    .rel.fz-24.bg-tertiary-50
+      .container-fluid.px-0.of-x-hidden
+        .flexbox.gx-0
+          .sp-m-6.abs.top-0.bottom-0
+            img.img-cover(src=require('./img/team.jpg') width='100%' height='100%' alt=$('team') title=$('team') loading='eager')
+        .container-l.two-col-bg-top.lg-tertiary
+          .flexbox.J-ctr.J-m-end
+            .sp-s-10.sp-m-6.py-5.ani-fade-enter.ani-right(class=locale==='en' ? 'sp-xl-6' : 'sp-xxl-4 spr-xxl-2')
+              h3.fz-32.mb-3 #{ $('team') }
+              p #{ $('teamContent') }
 
-  section.bg-pattern.py-5
-    .container.t-ctr.py-5.fz-24
-      .flexbox.J-ctr.gy-5.g-l-5
+    .rel.fz-24.bg-primary-50
+      .container-fluid.px-0.of-x-hidden
+        .flexbox.gx-0.J-end
+          .sp-m-6.abs.top-0.bottom-0
+            img.img-cover(src=require('./img/publication.jpg') width='100%' height='100%' alt=$('pub') title=$('pub') loading='eager')
+        .container-l.two-col-bg-bottom.lg-primary
+          .flexbox.J-ctr.J-m-start
+            .sp-s-10.sp-m-6.py-5.ani-fade-enter.ani-left(class=locale==='en' ? 'sp-xl-6' : 'sp-xxl-4 spl-xxl-2')
+              h3.fz-32.mb-3 #{ $('pub') }
+              p !{ $('content3') }
+  //- section.py-5
+    .container.t-ctr.py-5.fz-20
+      h2.fz-40.mb-5 執行流程
+      //- svg(width='500' height='500')&attributes({ viewBox: '0 0 150 150' })
+        defs
+          radialgradient#myGradient&attributes({ gradientUnits: 'userSpaceOnUse' })
+            stop(offset='10%' stop-color='gold')
+            stop(offset='95%' stop-color='red')
+          path#top(fill='none' stroke='url(#myGradient)' stroke-width='8' stroke-linecap='round' d='M48 54A35 35 0 0 1 93 45')
+          path#right(fill='none' stroke='url(#myGradient)' stroke-width='8' stroke-linecap='round' d='M108 62A35 35 0 0 1 92 106')
+          path#left(fill='none' stroke='url(#myGradient)' stroke-width='8' stroke-linecap='round' d='M70 110C53 107 40 93 40 75V74')
+        path(fill='url(#myGradient)' d='M102 36L85 54L103 53Z')
+        path(fill='url(#myGradient)' d='M88 94L95 117L80 109Z')
+        path(fill='url(#myGradient)' d='M52 76L28 71L43 62Z')
+        use(xlink:href='#top')
+        use(xlink:href='#left')
+        use(xlink:href='#right')
+        text
+          textPath(xlink:href='#top')&attributes({ textLength: '50', startOffset: '5' })
+            tspan(dy='-10') 訪談
+        text
+          textPath(xlink:href='#left')&attributes({ textLength: '50', startOffset: '5' })
+            tspan(dy='-10') 診斷
+        text
+          textPath(xlink:href='#right')&attributes({ textLength: '50', startOffset: '5' })
+            tspan(dy='-10') 排列
+  section#sec-strength.bg-pattern.py-5
+    .container.py-5.fz-20
+      .flexbox.J-ctr.a-ctr.gy-5.g-l-5.mb-3.ani-group-enter(data-stagger='.2')
+        .sp-xxl-8.t-ctr
+          h2.fz-40.mb-3.ani.ani-bottom #{ $('strength') }
+          p.ani.ani-bottom #{ $('strengthContent') }
         .sp-xxl-8
-          h2.fz-40.mb-5 #{ $('strength5') }
-          p #{ $('content5') }
-        .sp-12
-        .sp-l-6.sp-xl-3
-          .bg-cover(style!='background-image:url('+require('./img/b1.jpg')+');')
-            .bg-back-filter
-              h3.fz-24 #{ $('benefit6') }
-              p #{ $('content6') }
-        .sp-l-6.sp-xl-3
-          .bg-cover(style!='background-image:url('+require('./img/b3.jpg')+');')
-            .bg-back-filter
-              h3.fz-24 #{ $('benefit7') }
-              p #{ $('content7') }
-        .sp-l-6.sp-xl-3
-          .bg-cover(style!='background-image:url('+require('./img/b2.jpg')+');')
-            .bg-back-filter
-              h3.fz-24 #{ $('benefit8') }
-              p #{ $('content8') }
-        .sp-l-6.sp-xl-3
-          .bg-cover(style!='background-image:url('+require('./img/b4.jpg')+');')
-            .bg-back-filter
-              h3.fz-24 #{ $('benefit9') }
-              p #{ $('content9') }
+          h3.ani.ani-bottom.mb-3 #{ $('theoretical') }
+          dl.ani.ani-bottom
+            dt #{ $('economics') }
+            dd #{ $('economicsTheory') }
+            dt #{ $('drama') }
+            dd #{ $('dramaTheory') }
+            dt #{ $('psychology') }
+            dd #{ $('psychologyTheory') }
+          //- .flexbox.J-ctr.a-ctr.gy-5.g-l-5
+          //-   .sp-xxl-4
+          //-     h3
+          //-     p
+          //-   .sp-xxl-4
+          //-     h3
+          //-     p
+          //-   .sp-xxl-4
+          //-     h3
+          //-     p
+        .sp-xxl-8
+          h3.ani.ani-bottom.mb-3 #{ $('practical') }
+      .flexbox.g-1.g-m-2.J-ctr.J-m-start.ani-group-enter(data-stagger='.2')
+        .sp-5.sp-m-2.spl-xxl-2
+          img.ani.img-fluid.img-slice.pos-1(src=require('./img/b1-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-5.sp-m-2.spr-m-7.spr-xxl-6
+          img.ani.img-fluid.img-slice.pos-2(src=require('./img/b1-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-5.sp-m-2.spl-xxl-2
+          img.ani.img-fluid.img-slice.pos-3(src=require('./img/b1-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-5.sp-m-2
+          img.ani.img-fluid.img-slice.pos-4(src=require('./img/b1-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-10.sp-m-8.sp-xxl-4.nt-m-5
+          h3.fz-24.ani.ani-bottom.grid-text #{ $('develop') }
+          p.ani.ani-bottom.grid-text #{ $('developContent') }
 
-  section#sec-team.rel.fz-24.bg-tertiary
-    .container-fluid.px-0
-      .flexbox.gx-0
-        .sp-m-6.abs.top-0.bottom-0
-          img.img-cover(src=require('./img/team.jpg') width='100%' height='100%' alt=$('team2') title=$('team2') loading='eager')
-      .container-l.two-col-bg-top.lg-tertiary
-        .flexbox.J-end
-          .sp-m-6.py-5(class=locale==='en' ? 'sp-xl-6' : 'sp-xl-4')
-            h2.fz-40.mb-l-4 #{ $('team2') }
-            p #{ $('content2') }
+      .flexbox.g-1.g-m-2.J-ctr.J-m-start.ani-group-enter.row-r.pt-4.pt-m-0.nt-l-6(data-stagger='.2')
+        .sp-5.sp-m-2.spr-xxl-2
+          img.ani.img-fluid.img-slice.pos-2(src=require('./img/b2-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-5.sp-m-2.spl-m-7.spl-xxl-6
+          img.ani.img-fluid.img-slice.pos-1(src=require('./img/b2-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-5.sp-m-2.spr-xxl-2
+          img.ani.img-fluid.img-slice.pos-4(src=require('./img/b2-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-5.sp-m-2
+          img.ani.img-fluid.img-slice.pos-3(src=require('./img/b2-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-10.sp-m-8.sp-xxl-4.nt-m-5
+          h3.fz-24.ani.ani-bottom.grid-text #{ $('transform') }
+          p.ani.ani-bottom.grid-text #{ $('transformContent') }
 
-  section#sec-publication.rel.fz-24.bg-primary
-    .container-fluid.px-0
-      .flexbox.gx-0.J-end
-        .sp-m-6.abs.top-0.bottom-0
-          img.img-cover(src=require('./img/publication.jpg') width='100%' height='100%' alt=$('publication3') title=$('publication3') loading='eager')
-      .container-l.two-col-bg-bottom.lg-primary
-        .flexbox
-          .sp-m-6.py-5(class=locale==='en' ? 'sp-xl-6' : 'sp-xl-4')
-            h2.fz-40.mb-l-4 #{ $('publication3') }
-            p #{ $('content3') }
+      .flexbox.g-1.g-m-2.J-ctr.J-m-start.ani-group-enter.pt-4.pt-m-0.nt-l-6(data-stagger='.2')
+        .sp-5.sp-m-2.spl-xxl-2
+          img.ani.img-fluid.img-slice.pos-1(src=require('./img/b3-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-5.sp-m-2.spr-m-7.spr-xxl-6
+          img.ani.img-fluid.img-slice.pos-2(src=require('./img/b3-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-5.sp-m-2.spl-xxl-2
+          img.ani.img-fluid.img-slice.pos-3(src=require('./img/b3-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-5.sp-m-2
+          img.ani.img-fluid.img-slice.pos-4(src=require('./img/b3-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-10.sp-m-8.sp-xxl-4.nt-m-5
+          h3.fz-24.ani.ani-bottom.grid-text #{ $('innovation') }
+          p.ani.ani-bottom.grid-text #{ $('innovationContent') }
 
-  section#sec-plan
-    .container.py-5
-      h2.fz-40.t-ctr.mb-5 #{ $('plan') }
+      .flexbox.g-1.g-m-2.J-ctr.J-m-start.ani-group-enter.row-r.pt-4.pt-m-0.nt-l-6(data-stagger='.2')
+        .sp-5.sp-m-2.spr-xxl-2
+          img.ani.img-fluid.img-slice.pos-2(src=require('./img/b4-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-5.sp-m-2.spl-m-7.spl-xxl-6
+          img.ani.img-fluid.img-slice.pos-1(src=require('./img/b4-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-5.sp-m-2.spr-xxl-2
+          img.ani.img-fluid.img-slice.pos-4(src=require('./img/b4-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-5.sp-m-2
+          img.ani.img-fluid.img-slice.pos-3(src=require('./img/b4-a.jpg') width='320' height='1280' alt=$('develop') title=$('develop') loading='lazy')
+        .sp-10.sp-m-8.sp-xxl-4.nt-m-5
+          h3.fz-24.ani.ani-bottom.grid-text #{ $('prosperity') }
+          p.ani.ani-bottom.grid-text #{ $('prosperityContent') }
 
-      .flexbox.J-ctr.gy-3.gy-l-5
+  section#sec-planTitle.bg-radial-conic-bottom
+    .container.py-5.ani-group-enter(data-stagger='.3')
+      h2.fz-40.t-ctr.mb-5 #{ $('planTitle') }
+      .flexbox.J-ctr.gy-5
         .sp-9.sp-s-6.sp-m-5.sp-xl-3
-          .lg-price.py-3.py-xl-5
+          .lg-pink-gold.py-5.py-xl-5.ani.ani-bottom.h-100
             .t-ctr.fw-7
-              h3.fz-24.lh-xxl-tight(style='height:90px') #{ $('leader11') }
-              p.pr-1.pt-4.py-l-5.fz-32.t-tertiary.t-right(style='height: 145px')
-                sup=ctx.price11.substring(0,2)
-                =ctx.price11.substring(2)
-                sub #{ $('perHour') }
+              h3.fz-24.lh-xxl-tight.price-title(style='height:3rem') #{ $('plans')[0].name }
+              p.pr-1.pt-4.py-l-5.price #{ $('plans')[0].price }
             ul.list-group.list-group-flush.fz-20
-              li.list-group-item !{ $('price14k') }
+              li.list-group-item !{ $('target') } !{ $('plans')[0].target }
               each txt in $('package')
                 li.list-group-item!=txt
         .sp-9.sp-s-6.sp-m-5.sp-xl-3
-          .lg-price.py-3.py-xl-5
+          .lg-white-gold.py-5.py-xl-5.ani.ani-bottom
             .t-ctr.fw-7
-              h3.fz-24.lh-xxl-tight(style='height:90px') #{ $('boss12') }
-                br
-                small.fz-16=ctx.size12.substring(0, substringLength)
-                br
-                small.fz-16=ctx.size12.substring(substringLength)
-              p.pr-1.pt-4.py-l-5.fz-32.t-tertiary.t-right(style='height: 145px')
-                sup=ctx.price12.substring(0,2)
-                =ctx.price12.substring(2)
-                sub #{ $('perHour') }
+              h3.fz-24.lh-xxl-tight.price-title(style='height:3rem') #{ $('plans')[1].name }
+              p.pr-1.pt-4.py-l-5.price #{ $('plans')[1].price }
             ul.list-group.list-group-flush.fz-20
-              li.list-group-item !{ $('price20k') }
+              li.list-group-item !{ $('target') } !{ $('plans')[1].target }
+              li.list-group-item !{ $('scope') } !{ $('plans')[1].scope }
               each txt in $('package')
                 li.list-group-item!=txt
         .sp-9.sp-s-6.sp-m-5.sp-xl-3
-          .lg-price.py-3.py-xl-5
+          .lg-yellow-gold.py-5.py-xl-5.ani.ani-bottom
             .t-ctr.fw-7
-              h3.fz-24.lh-xxl-tight(style='height:90px') #{ $('boss13') }
-                br
-                small.fz-16=ctx.size13.substring(0, substringLength)
-                br
-                small.fz-16=ctx.size13.substring(substringLength)
-              p.pr-1.pt-4.py-l-5.fz-32.t-tertiary.t-right(style='height: 145px')
-                sup=ctx.price13.substring(0,2)
-                =ctx.price13.substring(2)
-                sub #{ $('perHour') }
+              h3.fz-24.lh-xxl-tight.price-title(style='height:3rem') #{ $('plans')[2].name }
+              p.pr-1.pt-4.py-l-5.price #{ $('plans')[2].price }
             ul.list-group.list-group-flush.fz-20
-              li.list-group-item !{ $('price30k') }
+              li.list-group-item !{ $('target') } !{ $('plans')[2].target }
+              li.list-group-item !{ $('scope') } !{ $('plans')[2].scope }
               each txt in $('package')
                 li.list-group-item!=txt
         .sp-9.sp-s-6.sp-m-5.sp-xl-3
-          .lg-price.py-3.py-xl-5
+          .lg-gold.py-5.py-xl-5.ani.ani-bottom
             .t-ctr.fw-7
-              h3.fz-24.lh-xxl-tight(style='height:90px') #{ $('boss14') }
-                br
-                small.fz-16=ctx.size14.substring(0, substringLength)
-                br
-                small.fz-16=ctx.size14.substring(substringLength)
-              p.pr-1.pt-4.py-l-5.fz-32.t-tertiary.t-right(style='height: 145px')
-                sup=ctx.price14.substring(0,2)
-                =ctx.price14.substring(2)
-                sub #{ $('perHour') }
+              h3.fz-24.lh-xxl-tight.price-title(style='height:3rem') #{ $('plans')[3].name }
+              p.pr-1.pt-4.py-l-5.price #{ $('plans')[3].price }
             ul.list-group.list-group-flush.fz-20
-              li.list-group-item !{ $('price40k') }
+              li.list-group-item !{ $('target') } !{ $('plans')[3].target }
+              li.list-group-item !{ $('scope') } !{ $('plans')[3].scope }
               each txt in $('package')
                 li.list-group-item!=txt
-      p.fz-16.mb-6.t-dark-red.fw-4.t-right #{ $('discount') }
-      h5.fz-24 #{ $('title15') }
+      .t-right
+        a.fz-16.mb-6.t-dark-red.fw-4(href='./index.html#sec-contact' title='add LINE friend')  #{ $('discount') }
+      h4.fz-24 #{ $('payments') }
 
       ul.list-unstyled.fz-20
-        li #{ $('content15') }
+        li #{ $('accountName') }
         li #{ $('account') }
         li #{ $('bank') }
         li #{ $('branch') }
-  section#sec-contact.lg-gray-white
-    //- form#contact-form.container.py-5(action='./' novalidate)
-    //-   h2.fz-40.t-ctr.mb-5 #{ $('contact16') }
-      //- .flexbox.J-ctr.gy-3.gy-l-5
-      //-   label.sp-form-label.sp-l-3.t-l-right(for='know') #{ $('howToKnow') }
-      //-   .sp-l-5.spr-l-2.sp-xxl-4.spr-xxl-3
-      //-     select#know.form-control(name='know' required)
-      //-       each what, i in ctx.bywhat
-      //-         option(value='' disabled=!i selected=!i)=what
-
-      //-   each input in form
-      //-     label.sp-form-label.sp-l-3.t-l-right(for=input.id)=input.label
-      //-     .sp-l-5.spr-l-2.sp-xxl-4.spr-xxl-3
-      //-       input.form-control(type=input.type id=input.id name=input.id placeholder=input.placeholder required)
-
-      //-   label.sp-form-label.sp-l-3.t-l-right(for='msg') #{ $('msg') }
-      //-   .sp-l-5.spr-l-2.sp-xxl-4.spr-xxl-3
-      //-     textarea#msg.form-control(rows='4' name='msg' placeholder=$('placeholder4') required)
-      //-   .sp-l-3
-      //-     button.btn.btn-tertiary.btn-block.btn-lg.fw-7(type='submit') #{ $('submit') }
-    form#contact-form.container.py-5(action='./' novalidate)
-      .grid.tc-12.r-gap-m-5
-        .cell.gcs-l-2.gce-l-7
-          h2.fz-40.t-ctr #{ $('contact16') }
-        label.cell.sp-form-label.gc-m-3.gcs-l-1.gce-l-3.t-m-right(for='know') #{ $('howToKnow') }
-        .cell.gc-m-8.gcs-l-3.gce-l-7
+  section#sec-contact.bg-radial-conic-top
+    form#contact-form.container.py-5.of-hidden(action='./' novalidate)
+      .grid.tc-12.r-gap-m-5.ani-group-enter(data-stagger='.15')
+        .cell.gcs-l-3.gce-l-7
+          h2.fz-40.t-ctr #{ $('contactus') }
+        label.ani.ani-right.cell.sp-form-label.gc-m-3.gcs-l-1.gce-l-3.t-m-right(for='know') #{ $('howToKnow') }
+        .cell.gc-m-8.gcs-l-3.gce-l-7.ani.ani-right
           select#know.form-control(name='know' required)
             each what, i in ctx.bywhat
               option(value='' disabled=!i selected=!i)=what
 
         each input in form
-          label.cell.sp-form-label.gc-m-3.gcs-l-1.gce-l-3.t-m-right(for=input.id)=input.label
-          .cell.gc-m-8.gcs-l-3.gce-l-7
+          label.cell.sp-form-label.gc-m-3.gcs-l-1.gce-l-3.t-m-right.ani.ani-right(for=input.id)=input.label
+          .cell.gc-m-8.gcs-l-3.gce-l-7.ani.ani-right
             input.form-control(type=input.type id=input.id name=input.id placeholder=input.placeholder required)
 
-        label.cell.sp-form-label.gc-m-3.gc-m-3.gcs-l-1.gce-l-3.t-m-right(for='msg') #{ $('msg') }
-        .cell.gc-m-8.gcs-l-3.gce-l-7
-          textarea#msg.form-control(rows='4' name='msg' placeholder=$('placeholder4') required)
-        .cell.gcs-s-4.gce-s-10.gcs-l-4.gce-l-6
+        label.cell.sp-form-label.gc-m-3.gc-m-3.gcs-l-1.gce-l-3.t-m-right.ani.ani-right(for='msg') #{ $('msg') }
+        .cell.gc-m-8.gcs-l-3.gce-l-7.ani.ani-right
+          textarea#msg.form-control(rows='4' name='msg' placeholder=$('msgPlaceholder') required)
+        .cell.gcs-s-4.gce-s-10.gcs-l-4.gce-l-6.ani.ani-bottom
           button.btn.btn-tertiary.btn-block.btn-lg.fw-7(type='submit') #{ $('submit') }
 
-        .cell.t-ctr.gcs-l-7.gce-l-13.grs-l-1.gre-span-l-6.as-l-ctr
-          .js-line.fixed-right.pt-5
-            .line-pc
-              img.line-icon(src=require('./img/line.png') width='60' height='60' alt='Official Line account' title='Official Line account' loading='lazy')
-              img.qr-code(src=require('./img/lineQRcode.png') width='360' height='360' alt='Official Line account' title='LINE QR code' loading='lazy')
-              br
-              span.line-join-text 掃描 Line QR Code 好友立即連繫我們
-            a.line-mobile(href='https://lin.ee/WNzQjhL')
-              img.line-join-icon(src=require('./img/joinLine.png') width='116' height='36' title='加入好友' alt='加入好友' loading='lazy')
-              br
-              span.line-join-text 加入Line好友立即連繫我們
+        .cell.t-ctr.gcs-l-7.grs-l-1.pt-5.pt-l-0
+          h3.line-join-text.fz-40 LINE
+        .cell.t-ctr.gcs-l-7.grs-l-2.gre-l-sp6
+          .line-pc(style='width:100%;height:100%')
+            canvas#qrcode(data-text=$('scanQRCode'))
+          a.line-mobile(href='https://lin.ee/WNzQjhL' title='line app' rel='noreferrer noopener nofollow')
+            img.line-join-icon(src=require('./img/joinLine-'+locale+'.png') width='116' height='36' title='加入好友' alt='加入好友' loading='lazy')
+            br
+            span.line-join-text #{ $('addLineFriend') }

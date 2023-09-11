@@ -11,6 +11,7 @@ import autoprefixer from 'autoprefixer'
 import TerserPlugin from 'terser-webpack-plugin'
 import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin'
 import { htmlPlugins } from './import.mjs'
+import CopyPlugin from 'copy-webpack-plugin'
 const EXT = process.env.EXTENSION
 const rules = [
   {
@@ -65,10 +66,14 @@ if (+process.env.OPTIMIZE) {
     new TerserPlugin({
       extractComments: false,
       parallel: true,
-      terserOptions: { mangle: true, module: false, format: { comments: false } }
+      terserOptions: {
+        mangle: true,
+        module: false,
+        format: { comments: false }
+      }
     }),
     new PurgeCSSPlugin({
-      paths: glob.sync(path.resolve('dist', '**', '*'), { nodir: true }),
+      paths: glob.sync(path.resolve('src', '**', '*'), { nodir: true }),
       only: ['demo', 'style']
     }),
     new CssMinimizerPlugin({
@@ -85,7 +90,7 @@ if (+process.env.OPTIMIZE) {
         keepClosingSlash: false,
         minifyCSS: true,
         minifyJS: true,
-        minifyURLs: text => text.replace(/https?\:/, ''),
+        minifyURLs: text => text.replace(/https:/, ''),
         noNewlinesBeforeTagClose: true,
         removeAttributeQuotes: true,
         removeComments: process.env.EXTENSION !== '.cshtml',
@@ -95,7 +100,7 @@ if (+process.env.OPTIMIZE) {
         removeStyleLinkTypeAttributes: true,
         removeTagWhitespace: true,
         sortAttributes: true,
-        sortClassName: true
+        sortClassName: false
       },
       async minify(data, minimizerOptions) {
         const [[filename, input]] = Object.entries(data)
@@ -106,6 +111,12 @@ if (+process.env.OPTIMIZE) {
           errors: []
         }
       }
+    }),
+    new CopyPlugin({
+      patterns: ['robots.txt', 'BingSiteAuth.xml', 'img/og.jpg'].map(file => ({
+        from: path.resolve('src', file),
+        to: path.resolve('dist', file)
+      }))
     })
   )
 }
@@ -113,7 +124,7 @@ if (+process.env.OPTIMIZE) {
 const prodConf = merge(common, {
   output: {
     path: path.resolve('dist'),
-    publicPath: '../'
+    // publicPath: '/'
   },
   module: {
     rules
@@ -137,7 +148,7 @@ prodConf.plugins.push(
   new MiniCssExtractPlugin({
     filename({ chunk }) {
       const name = ['script'].includes(chunk.name)
-      return `css/${name ? 'style' : '[name]'}.css`
+      return `css/${name ? 'style[contenthash:4]' : '[name]'}.css`
     }
   })
 )

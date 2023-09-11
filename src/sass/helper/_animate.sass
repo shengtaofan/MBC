@@ -1,9 +1,18 @@
-.ani-fade-enter
+.ani-fade-enter,
+.ani-group-enter .ani
   opacity: 0
   transition: opacity .5s, transform .4s
+.ani-right
+  transform: translateX(100px)
+.ani-left
+  transform: translateX(-100px)
+.ani-bottom
+  transform: translateY(100px)
+
 .enter-enlarge
   transform: translateY(0)scale(0)
 
+.ani-group-enter-active .ani,
 .fade-enter-active
   opacity: 1 !important
   transform: translateY(0)scale(1) !important

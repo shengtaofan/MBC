@@ -1,0 +1,31 @@
+:root {
+  --bg-ring: radial-gradient(circle at 0 0, #000, #000 130px, transparent 230px, #000 230px, #000 420px, rgba(0, 0, 0, .3) 450px, #000 600px), conic-gradient(from 270deg at 0 0, #5e6b84, #060b14 29.6%, #5e6b84 32.6%, #060b14 34.4%, #a3abb9 36.2%, #5e6b84 41.6%, #060b14 47%, transparent 56%, #5e6b84 63.2%, #060b14 68%, #5e6b84 70.4%, #a3abb9)
+}
+.bg-radial-conic-top {
+  background-image: linear-gradient(0deg, $white var(--col-width, 212px), transparent var(--col-width, 212px)), var(--bg-ring);
+}
+.bg-radial-conic-bottom {
+  background: radial-gradient(circle at 0 100%, $black, $black 130px, transparent 230px, $black 230px, $black 420px, rgba($black, .3) 450px, $black 600px), conic-gradient(from 270deg at 0 100%, #5e6b84, #060b14 16% * .6 + 20%,  #5e6b84 21% * .6 + 20%, #060b14 24% * .6 + 20%, #a3abb9 27% * .6 + 20%,  #5e6b84 36% * .6 + 20%, #060b14 45% * .6 + 20%, transparent 60% * .6 + 20%,  #5e6b84 72% * .6 + 20%, #060b14 80% * .6 + 20%,  #5e6b84 84% * .6 + 20%, #a3abb9);
+}
+@include media-breakpoint-up(m) {
+  .bg-radial-conic-top {
+    --col-width: 217px;
+  }
+}
+@include media-breakpoint-up(l) {
+  .bg-radial-conic-top {
+    --col-width: #{round(calc(960px / 12))};
+    background-image: linear-gradient(90deg, transparent 50%, #fff 50%), var(--bg-ring);
+  }
+}
+@include media-breakpoint-up(xl) {
+  .bg-radial-conic-top {
+    --col-width: #{round(calc(1140px / 12))};
+    background-image: linear-gradient(90deg, transparent calc(50% + var(--col-width)), #fff 50%), var(--bg-ring);
+  }
+}
+@include media-breakpoint-up(xxl) {
+  .bg-radial-conic-top {
+    --col-width: #{round(calc(1520px / 12))};
+  }
+}

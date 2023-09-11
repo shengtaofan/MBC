@@ -3,6 +3,47 @@ import { readFile, writeFile } from 'fs/promises'
 import HtmlPlugin from 'html-webpack-plugin'
 import { primary } from './webpack.common.mjs'
 import glob from 'glob'
+export const defaultLocale = 'zh'
+export const langs = {
+  zh: 'zh-Hant-TW',
+  en: 'en'
+}
+
+async function importStyle() {
+  const mergeStyles = [
+    'bootstrap-base.scss',
+    'bootstrap-utilities.scss',
+    'style.scss'
+  ]
+  const indexJS = path.resolve('src', 'sass', 'index.js')
+  if (process.env.NODE_ENV === 'production') {
+    const readStyles = mergeStyles.map(scss =>
+      readFile(path.resolve('src', 'sass', scss), 'utf-8')
+    )
+
+    const styles = await Promise.all(readStyles)
+    const styleSheet = path.resolve('src', 'sass', 'merge.scss')
+
+    let first = true
+    let content = styles.join('')
+    content = content
+      .replace(/\/\/.+;\n/g, '')
+      .replace(/\/\*!\n(.+\n)+\s\*\/\n+/gm, '')
+      .replace(/@import '.\/bootstrap-configuration';\n/g, match => {
+        if (first) {
+          first = false
+          return match
+        }
+        return ''
+      })
+    await writeFile(styleSheet, content, 'utf-8')
+    await writeFile(indexJS, `import './merge.scss'`, 'utf-8')
+    return
+  }
+
+  const importSCSS = mergeStyles.map(scss => `import './${scss}'`).join('\n')
+  await writeFile(indexJS, importSCSS, 'utf-8')
+}
 
 export async function importInlineSVG() {
   let importStr = ''
@@ -24,7 +65,7 @@ export async function importSpriteSVG() {
       importStr += `import '.${svg.replace('src/img/spriteSVG', '')}'\n`
     }
   })
-  const scriptjs = path.resolve('src', 'img', 'spriteSVG', 'spriteSVG.js')
+  const scriptjs = path.resolve('src', 'img', 'spriteSVG', 'index.js')
   await writeFile(scriptjs, importStr, 'utf-8')
 }
 
@@ -53,12 +94,9 @@ export function importPugFiles() {
     }
   }
 }
-export const langs = {
-  zh: 'zh-Hant-TW',
-  en: 'en'
-}
+
 export function htmlPlugins(outputExt) {
-  const pugs = glob.sync('src/*').filter(file => file.endsWith('.pug') && !file.includes('demo'))
+  const pugs = glob.sync('src/*').filter(file => file.endsWith('.pug') && !file.match(/demo|sitemap/))
   const scriptFile = importPugFiles()
   const ext = '.pug'.length
   const isMutiLang = Object.keys(langs).length > 1
@@ -78,7 +116,7 @@ export function htmlPlugins(outputExt) {
             useShortDoctype: false
           },
           basename,
-          filename: `${isMutiLang ? locale + '/' : ''}${basename + outputExt}`,
+          filename: `${isMutiLang && defaultLocale !== locale ? locale + '/' : ''}${basename + outputExt}`,
           inject: false,
           chunks: ['script'],
           meta: {
@@ -91,6 +129,8 @@ export function htmlPlugins(outputExt) {
             // 'twitter:site': '@username for the website used in the card footer.',
             // 'twitter:creator': '@username for the content creator / author.',
             // 'twitter:card': 'summary',
+            'google-site-verification': 'LxBWdZimplzUi_BC5CI_viwhDeu60s3NiQefBsrrCg8',
+            'msvalidate.01': 'F511A6E2A2C8EACFE4DA1C9972150F6B',
             'theme-color': primary,
             'msapplication-navbutton-color': primary,
             'apple-mobile-web-app-status-bar-style': primary,
@@ -105,19 +145,34 @@ export function htmlPlugins(outputExt) {
       })
     })
     .flat()
-  scriptFile.write(importSpriteSVG)
+
+  scriptFile.write(() => {
+    importStyle()
+    importSpriteSVG()
+    importInlineSVG()
+  })
 
   const isCSHTML = outputExt === '.cshtml'
-  createPlugins.push(
-    new HtmlPlugin({
-      basename: isCSHTML ? 'layout' : 'demo',
-      filename: (isCSHTML ? 'Views/layout' : 'demo') + outputExt,
-      template: 'demo.pug',
-      chunks: [isCSHTML ? 'script' : 'demo'],
-      inject: false,
-      favicon: path.resolve('src', 'img', 'favicon.ico'),
-    })
-  )
+  // 打包 html 不產出 demo.html
+  if(!Boolean(+process.env.OPTIMIZE) || process.env.EXTENSION === '.cshtml'){
+    createPlugins.push(
+      new HtmlPlugin({
+        basename: isCSHTML ? 'layout' : 'demo',
+        filename: (isCSHTML ? 'Views/layout' : 'demo') + outputExt,
+        template: 'demo.pug',
+        chunks: [isCSHTML ? 'script' : 'demo'],
+        inject: false,
+        favicon: path.resolve('src', 'img', 'favicon.ico'),
+      })
+    )
+  }
+  createPlugins.push(new HtmlPlugin({
+    template: 'sitemap.pug',
+    filename: 'sitemap.xml',
+    inject: false,
+    langs,
+    minify: true
+  }))
   return createPlugins
 }
 

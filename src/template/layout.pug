@@ -1,6 +1,7 @@
 include ./layout/seo.pug
 include ./layout/langs.pug
 include ./layout/jsonld.pug
+include ./components/carousel.pug
 include ./components/cshtmlComment.pug
 include ./components/utilities.pug
 -
@@ -8,15 +9,17 @@ include ./components/utilities.pug
     options: { basename, filename, lang, locale },
     tags: { headTags }
   } = htmlWebpackPlugin
+  filename = filename.replace(locale+'/', '')
 - const ctx = context[locale]
 - const seoMeta = ['demo', 'layout'].includes(basename) ? seo[basename] : seo[locale][basename]
-- const { title, desc } = seoMeta
+- let { title, desc } = seoMeta
 - let headerH1 = false
 mixin console(vars)
   pre #{vars}
 block local
 
 mixin layout()
+
   doctype html
   html(lang=lang)
     head

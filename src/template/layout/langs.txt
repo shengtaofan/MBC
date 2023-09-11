@@ -14,7 +14,6 @@ block global
 
     }
   }
-
 -
   const context = {
     zh: {
@@ -23,11 +22,11 @@ block global
       team: '團隊陣容',
       teamContent: '每位成員具備產業顧問、高階教練、排列師三合一的專業。並擁有國際組排論壇（INFOSYON）與亞洲組排協會（JAASCOB）的雙認證。',
       pub: '出版資源',
-      content3: '<a class="t-tertiary" href="https://www.wunan.com.tw/bookdetail?NO=16485" title="五南官網" target="_blank" rel="noreferrer noopener nofollow">《表演藝術引導教練與企業組織系統排列》</a>，作者<a class="t-tertiary" href="https://shengtaofan.github.io/profile/?utm_source=mbc_official&utm_medium=mbc_redirect&utm_campaign=intro" title="范聖韜教授 | 國立臺灣師範大學-表演藝術研究所暨學士學位學程" target="_blank">范聖韜</a>。為全球首部從表演藝術的角度，探討企業組織系統排列的專書。',
-      scanQRCode: '加入LINE好友，立即獲得新書試閱版',
-      addLineFriend: '加入LINE好友立即連繫我們',
+      content3: '<a href="https://www.wunan.com.tw/bookdetail?NO=16485" title="五南官網" target="_blank" rel="noreferrer noopener nofollow">《表演藝術引導教練與企業組織系統排列》</a>，作者 <a href="https://shengtaofan.github.io/profile/" title="范聖韜教授 | 國立臺灣師範大學-表演藝術研究所暨學士學位學程" target="_blank">范聖韜</a>。為全球首部從表演藝術的角度，探討企業組織系統排列的專書。',
+      scanQRCode: '（加入我們的LINE官方帳號，即可免費獲得試閱版）',
+      addLineFriend: '加入Line好友立即連繫我們',
       strength: '系統排列',
-      strengthContent: '企業組織系統排列是一種管理顧問方法，可以快速、有效、深入地找出經營議題的根源，以及提出致勝策略。企業組織系統排列源於德國，風行歐洲超過20年，BMW、Siemens、Microsoft等全球知名企業都在使用。2018年由亞洲組排協會（JAASCOB）引進臺灣，2023年起創業家顧問股份有限公司，進行商業應用，為企業領導人、資深經理人，提供數位轉型、世代共榮、跨域創新、領導與組織發展的諮詢服務。',
+      strengthContent: '企業組織系統排列是一種管理顧問方法，可以快速、有效、深入地找出經營議題的根源，以及提出致勝策略。企業組織系統排列源於德國，風行歐洲超過20年，BMW、Siemens、Microsoft等全球知名企業都在使用。2018年由亞洲組排協會（JAASCOB）引進臺灣，2023年起創業家顧問股份有限公司，進行商業應用，為企業主、中高階主管，提供數位轉型、世代共榮、跨域創新、領導與組織發展的諮詢服務。',
       transform: '數位轉型',
       transformContent: '我們透過優化團隊才能，制定明確策略，有效地解決市場問題，滿足客戶需求，實現全面改革和提升。',
       prosperity: '世代共榮',
@@ -64,7 +63,7 @@ block global
       ],
       target: '適用對象: ',
       scope: '公司規模: ',
-      discount: '半年期間，預付3次享有95折優惠。想了解更多，加入LINE好友立即諮詢。',
+      discount: '半年期間，預付3次享有95折優惠。立即聯繫我們，可享免費初步諮詢。',
       package: ['30分鐘訪談和診斷', '90分鐘排列'],
       payments: '付款方式',
       accountName: '戶名 : 創業家顧問股份有限公司',
@@ -92,14 +91,6 @@ block global
       brandLogo: '創業家顧問',
       copyright: '&copy;' + new Date().getFullYear() + '創業家顧問股份有限公司',
       brandLogo: '<span class=\'logo-text\'>創業家顧問',
-      theoretical: '基礎理論',
-      practical: '實務應用',
-      economics: '經濟學',
-      economicsTheory: '與繁瑣耗時的分析報告不同，我們運用經濟學的模擬方法，呈現真實情境，使企業主能立即看見清晰的願景藍圖，提升決策效率。',
-      drama: '戲劇學',
-      dramaTheory: '超越操作層面，從複雜的動力中抽身，我們運用戲劇學的審美距離，使企業主能站在置高點，掌握商業全局，實現前瞻領導。',
-      psychology:'心理學',
-      psychologyTheory: '有別於傳統機械化、局部式的管理技術，我們運用心理學的系統觀，提供企業主更全面、更宏觀的經營策略，協助迎接多變的市場挑戰。',
     },
     en: {
       introduction: 'About Us',
@@ -107,15 +98,15 @@ block global
       team: 'Our Team',
       teamContent: 'Each of our team members has the three-in-one profession of industry consultant, executive coach, and constellator . Each of us has the dual certifications of the International Forum for System Constellations in Organizations (INFOSYON) and  Juridical Asian Association of Systemic Constellations in Organizations & in Business (JAASCOB).',
       pub: 'Publication Resources',
-      content3: '<a class="t-tertiary" href="https://www.wunan.com.tw/bookdetail?NO=16485" title="五南官網" target="_blank" rel="noreferrer noopener nofollow">Performing Arts Facilitation Coaching and Business Organizational Systemic Constellations</a> is authored by <a class="t-tertiary" href="https://shengtaofan.github.io/profile/?utm_source=mbc_en_official&utm_medium=mbc_redirect&utm_campaign=intro" title="范聖韜教授 | 國立臺灣師範大學-表演藝術研究所暨學士學位學程" target="_blank">Dr. Sheng-Tao Fan</a>. It is the world’s first book discussing business organizational systemic constellations from the perspective of performing arts.',
-      scanQRCode: 'Join our LINE to get the new book trial version.',
-      addLineFriend: 'Add our LINE to contact us instantly.',
+      content3: 'Performing Arts Facilitation Coaching and Business Organizational Systemic Constellations is authored by Dr. Sheng-Tao Fan. It is the world’s first book discussing business organizational systemic constellations from the perspective of performing arts.',
+      scanQRCode: '(Please join our LINE official account, and you can immediately get the trial version for free）',
+      addLineFriend: 'Add our Line official account, to contact us instantly.',
       strength: 'Systemic Constellations',
       strengthContent: 'Business Organizational Systemic Constellations is a management consulting method. It can quickly, effectively, and deeply find out the root causes of business issues and propose winning strategies. It is originated in Germany and has been popular in Europe for more than 20 years. It is used by world-renowned companies such as BMW, Siemens, and Microsoft. It is introduced to Taiwan by JAASCOB in 2018. Master Builder Consulting Company Limited starts commercial application in 2023. We provide business owners, mid-level managers, and senior executives with digital transformation, intergenerational prosperity, interdisciplinary innovation, as well as leadership and organizational development consulting services.',
       transform: 'Digital Transformation',
       transformContent: 'We optimize team skills, devise clear strategies, efficiently tackle market challenges, fulfill consumer needs, and achieve holistic reform and advancement.',
       prosperity: 'Intergenerational Prosperity',
-      prosperityContent: 'We support family businesses to balance equity distribution, adeptly plan global expansion strategies, and foster shared prosperity across generations.',
+      prosperityContent: 'We support family businesses to balance equity distribution, adeptly planTitle global expansion strategies, and foster shared prosperity across generations.',
       innovation: 'Interdisciplinary Innovation',
       innovationContent: 'We cultivate cross-field collaboration, ensure sustainable green development, establish diverse ecosystems, and propel new business models.',
       develop: 'Leadership Development',
@@ -124,31 +115,31 @@ block global
       plans: [
         {
           name: 'Basic',
-          target: 'Senior Managers',
+          target: 'Mid Level Managers & Senior Executives',
           price: '14,000'
         },
         {
           name: 'Advanced',
-          target: 'Business Owners',
+          target: 'Business Owners.',
           scope: 'The company size is less than 8 people.',
           price: '20,000'
         },
         {
           name: 'Premium',
-          target: 'Business Owners',
+          target: 'Business Owners.',
           scope: 'The company size is between 8 and 30 people.',
           price: '30,000'
         },
         {
           name: 'Ultimate',
-          target: 'Business Owners',
+          target: 'Business Owners.',
           scope: 'The company size is between 31 and 200 people.',
           price: '40,000'
         },
       ],
       target: 'Target: ',
       scope: 'Scope: ',
-      discount: 'Within the half-year period, enjoy a 5% discount by prepaying 3 sessions. Join our LINE to get more information.',
+      discount: 'Within the half-year period, enjoy a 5% discount by prepaying 3 sessions. Contact us today for a free preliminary discussion.',
       package: ['30 minutes of interviews and diagnoses', '90 minutes of constellations'],
       payments: 'Payments',
       accountName: 'Account Name : Master Builder Consulting Company Limited',
@@ -165,7 +156,7 @@ block global
       subject: 'Subject',
       msg: 'Message',
       howToKnow: 'How do you know us',
-      bywhat: ['Please choose', 'Through LINE', 'Recommended by relatives or friends', 'Introduced through official website', 'Through online media'],
+      bywhat: ['Please choose', 'Through Line', 'Recommended by relatives or friends', 'Introduced through official website', 'Through online media'],
       submit: 'Send',
       namePlaceholder: 'Please type your name',
       telPlaceholder: 'Please type your mobile number',
@@ -176,16 +167,7 @@ block global
       brandLogo: '<span class=\'hidden inline-l\'>Master</span><span class=\'hidden inline-l\'>Builder</span><span class=\'hidden inline-l\'>Consulting</span>',
       copyright: '&copy;' + new Date().getFullYear() + ' Master Builder Consulting Co., Ltd.',
       brandLogo: '<span class=\'logo-text\'>Master Builder Consulting</span>',
-      theoretical: 'Theoretical Foundations',
-      practical: 'Practical Application',
-      economics: 'Economics',
-      economicsTheory: 'Unlike tedious and time-consuming analytical reports, we utilize the simulation approach of economics to present real-world scenarios, enabling business owners to immediately visualize a clear roadmap and enhance decision-making efficiency.',
-      drama: 'Drama',
-      dramaTheory: 'Going beyond the operational aspects and disengaging from complex dynamics, we apply the aesthetic distance to position business owners at a vantage point, allowing them to grasp the complete business landscape and achieve forward-looking leadership.',
-      psychology: 'Psychology',
-      psychologyTheory: 'Diverging from traditional mechanistic and localized management techniques, we employ a systemic perspective from psychology to provide business owners with a more comprehensive and macro-level strategic approach, assisting them in addressing the ever-changing market challenges.',
     }
   }
 - function $(key)
-
-  - return context[locale][key] || ''
+  - return context[locale][key]

@@ -1,0 +1,16 @@
+include ./template/layout/seo.pug
+
+<?xml version="1.0" encoding="utf-8" ?>
+urlset(xmlns='http://www.sitemaps.org/schemas/sitemap/0.9')
+  url
+    loc https://masterbuilder.com.tw/
+    lastmod #{ new Intl.DateTimeFormat('fr-CA').format(new Date()) }
+    priority 1.00
+  each pages, lang in seo
+    if ['demo', 'layout'].includes(lang)
+      - continue
+    each meta, page in pages
+      url
+        loc https://masterbuilder.com.tw/#{ lang !== 'zh' ? lang + '/': '' }#{ page }.html
+        lastmod #{ new Date().toISOString() }
+        priority 0.80

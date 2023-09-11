@@ -17,15 +17,17 @@ block body
       h1=projectName
       ul.list-inline
         li.list-inline-item
-          a#download.btn.btn-link.btn-sm(href='#' title='Local' download='meta.text') 下載Meta
+          a#download.btn.btn-link.btn-sm(href='#' title='Local' download='meta.txt') 下載Meta
         li.list-inline-item
           a.btn.btn-link.btn-sm(href='http://localhost/demo.html' title='Local') Local
         li.list-inline-item
           a.btn.btn-link.btn-sm(href=externalIP+'/'+filename title='External') External
         li.list-inline-item
-          a.btn.btn-link.btn-sm(href=testingDomain+baseDir+'/'+filename title='靜態站') 靜態站
-        li.list-inline-item
-          a.btn.btn-link.btn-sm.disabled(href='https://'+project+'.cmind.com.tw' title='測試站') 測試站
+          a.btn.btn-link.btn-sm(href=staticDomain+baseDir+'/'+filename title='靜態站') 靜態站
+        li.list-inline-item(style={ display: testingDomain ? 'inline-block' : 'none' })
+          a.btn.btn-link.btn-sm(href=testingDomain||'#' title='測試站') 測試站
+        li.list-inline-item(style={ display: officialDomain ? 'inline-block' : 'none' })
+          a.btn.btn-link.btn-sm(href=officialDomain||'#' title='正式站') 正式站
 
       each lang, l in langCodes
         .custom-control.custom-radio.custom-control-inline(class=`css-${lang}` style=!isMutiLang && 'display:none')
@@ -45,11 +47,14 @@ block body
             caption(style=!isMutiLang && 'display:none') Lang:
               span(style='text-transform: uppercase;')=lang
             thead
+              tr.css-edit-checked-show
+                th(colspan='10')
+                  label(for='officialurl') 正式站網址
+                  input#officialurl.form-control.form-control-sm(type='text' name='officialdomain' value=officialDomain || 'https://' placeholder='正式站網址' title='正式站網址')
               tr
-                th Title
-                  span.css-edit-checked-show
-                    br
-                    |&nbsp; Description
+                th
+                  span.css-edit-checked-hide Title
+                  span.css-edit-checked-show Meta
                 each th in ['Tab', 'Url']
                   th=th
                 th: a.btn.btn-link.btn-sm(data-action='closeAll' href='#' title='Close all') All
@@ -100,7 +105,7 @@ block body
                   -
                     const linkAtt = {
                       class: 'btn btn-link btn-sm',
-                      href: `./${isMutiLang ? lang + '/': ''}${basename}.html`,
+                      href: `./${isMutiLang && lang !== 'zh' ? lang + '/': ''}${basename}.html`,
                       title:  `open ${page.title}`
                     }
                   td: a(target='_blank')&attributes(linkAtt) Auto

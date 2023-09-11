@@ -124,20 +124,21 @@ $('#download').on('click', function (e) {
     }
   })
 
-  const seoStr = `-
+  let seoStr = `- const officialDomain = '${$('#officialurl').val()}'\n`
+  seoStr += `-
   const seo = {${$.map(seo, (head, lang) => {
     if (['layout', 'demo'].includes(lang)) {
       return `
-      ${lang}: {${$.map(head, (text, meta) => `
+    ${lang}: {${$.map(head, (text, meta) => `
+      ${meta}: '${text}'`).join(',')}
+    }`
+  }
+  return `
+    ${lang}: {${$.map(seo[lang], (head, basename) => `
+      ${basename}: {${$.map(head, (text, meta) => `
         ${meta}: '${text}'`).join(',')}
-      }`
-    }
-    return `
-      ${lang}: {${$.map(seo[lang], (head, basename) => `
-        ${basename}: {${$.map(head, (text, meta) => `
-          ${meta}: '${text}'`).join(',')}
-        }`)}
-      }`
+      }`)}
+    }`
 }).join(',')}
   }`
   console.log(seoStr)

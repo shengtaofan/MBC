@@ -2,6 +2,7 @@
 files:
   ignore:
   - src/sass/bootstrap4/**/*.s+(a|c)ss
+  - src/sass/page/_variables.scss
   include:
   - src/sass/*.s+(a|c)ss
   - src/sass/helper/*.s+(a|c)ss

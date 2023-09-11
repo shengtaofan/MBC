@@ -1,7 +1,7 @@
-html
-  scroll-padding-top: 60px
-body
-  padding-top: 60px
+// html
+//   scroll-padding-top: 60px
+// body
+//   padding-top: 60px
 // .logo
 header
   transition: background-color .3s
@@ -29,16 +29,32 @@ header
 
 .slide-down
   header
-    background-color: transparent
+    background-color: rgba($primary, .3)
   .fixed-right
     transform: translate(0, 0)scale(1)
     .line-icon
       animation: bouncing 5s infinite
-
-header,
+  .logo
+    width: 40px
+    height: auto
+    transition: width .3s
+    &-text
+      display: none
+.go-top
+  display: inline-block
+  width: 100%
+  padding: 0.5rem 0
+  border-radius: $border-radius-sm
+  background-color: $primary
+  text-align: center
+.logo-text
+  display: none
+// header,
 .navbar-show header
   background-color: $primary
-
+.navbar-brand
+  span
+    font-size: 1.5rem
 // .qr-code
 //   position: absolute
 //   right: 45px
@@ -65,7 +81,11 @@ header,
 //     bottom: auto
 
 
-
++media-breakpoint-up(l)
+  .go-top
+    padding: 1rem 0
+  .logo-text
+    display: inline
 // +media-breakpoint-down(s)
 //   .line-icon
 //     width: 45px
