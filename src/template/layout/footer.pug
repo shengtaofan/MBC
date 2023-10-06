@@ -19,7 +19,7 @@ footer.py-3
   ul.list-unstyled.gy-3
     li
       .line-pc
-        img.line-icon(src=require('./img/line.png') width='60' height='60' alt='Official Line account' title='Official Line account' loading='lazy')
+        img.line-icon(src=require('./img/embedSVG/line.svg') width='60' height='60' alt='Official Line account' title='Official Line account' loading='lazy')
         img.qr-code(src=require('./img/lineQRcode.png') width='360' height='360' alt='Official Line account' title='LINE QR code' loading='lazy')
         br
         span.line-join-text #{ $('scanQRCode') }
@@ -27,5 +27,8 @@ footer.py-3
         img.line-join-icon(src=require('./img/joinLine-'+locale+'.png') width='116' height='36' title='加入好友' alt='加入好友' loading='lazy')
         br
         span.line-join-text #{ $('addLineFriend') }
+    li.t-right
+      a(href='https://www.facebook.com/master.builder.consulting' title='創業家顧問臉書' target='_blank' rel='noreferrer noopener nofollow')
+        img(src=require('./img/embedSVG/fb.svg') width='60' height='60' alt='facebook fan club' title='facebook fan club' loading='lazy')
     li
       a.go-top(href='#top' title='Go top') ↑
