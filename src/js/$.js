@@ -3,33 +3,34 @@ export const ready = ['ready', function (cb) {
   if (isReady) {
     cb()
   } else {
-    this.on('DOMContentLoaded', cb)
+    this.one('DOMContentLoaded', cb)
   }
   return this
 }]
 
 export const on = ['on', function (event, cbOrSelector, cbOrCapture, capture) {
-  if (typeof cbOrSelector === 'function') {
-    this.forEach(e => e.addEventListener(event, cbOrSelector, cbOrCapture))
-  } else {
+  const events = event.split(' ')
+  events.forEach(evt => {
     this.forEach(el => {
-      el.addEventListener(
-        event,
-        e => {
-          console.log(this)
+      if (typeof cbOrSelector === 'function') {
+        el.addEventListener(evt, cbOrSelector, cbOrCapture)
+      } else {
+        el.addEventListener(evt, e => {
           if (e.target.matches(cbOrSelector)) {
             cbOrCapture(e)
           }
         },
         capture
-      )
+        )
+      }
     })
-  }
+  })
   return this
 }]
 
 export const one = ['one', function (event, cbOrSelector, cbOrCapture, capture) {
-  this.on(event, cbOrSelector, cbOrCapture, { one: true })
+  this.on(event, cbOrSelector, { once: true })
+  return this
 }]
 
 export const off = ['off', function (event, cbOrSelector, cb) {
@@ -44,6 +45,17 @@ export const off = ['off', function (event, cbOrSelector, cb) {
       })
     })
   }
+  return this
+}]
+
+export const trigger = ['trigger', function (evt) {
+  this.forEach((e) => {
+    if (typeof evt === 'string' && typeof e[evt] === 'function') {
+      e[evt]()
+      return
+    }
+    e.dispatchEvent(new Event(evt))
+  })
   return this
 }]
 
@@ -101,23 +113,36 @@ export const prevAll = ['prevAll', function (selector, el) {
   return this.noReapted(el)
 }]
 
-export const filterEl = ['filterEl', function (el, matchEl) {
-  return el.filter((item, pos, self) => $(matchEl).includes(item) && self.indexOf(item) === pos)
-}]
-
 export const siblings = ['siblings', function () {
-  return this.map(e => e.parentNode.children).filter(e => e !== this)
+  return this.flatMap(e => $(e).parent().children().filter(child => e !== child))
 }]
 
-export const children = ['children', function () {
-  return this.flatMap(e => $(e.children))
+export const children = ['children', function (selector) {
+  return this.flatMap(e => {
+    const children = $(e.children)
+    if (selector) {
+      return children.filterEl(children, selector)
+    }
+    return children
+  })
 }]
+
+export const nth = ['nth', function (n) {
+  if (n > -1) {
+    return $(this[n])
+  }
+  if (n < 0) {
+    return $(this[this.length - n])
+  }
+
+  return this.map(e => this.parent().children().indexOf(e))
+}]
+
 export const find = ['find', function (selector, el) {
   if (selector === undefined) selector = ''
   if (el === undefined) el = $()
   if (this.length) {
     const eachChildren = this.children()
-    // console.log(eachChildren)
 
     this.merge(el, eachChildren)
     return this.children().find(selector, el)
@@ -307,12 +332,21 @@ export const collapse = ['collapse',
     return this
   }
 ]
+
+export const remove = ['remove',
+  function () {
+    this.forEach(el => {
+      el.remove()
+    })
+    return this
+  }
+]
+
 $.bootstrap = function (...plugins) {
   plugins.forEach(plugin => {
+    this.bootstrap[plugin.name] = plugin
     $.ElementCollection.prototype[plugin.NAME] = function (action) {
-      this.forEach(el => {
-        plugin.getOrCreateInstance(el)[action]()
-      })
+      this.forEach(el => { plugin.getOrCreateInstance(el)[action]() })
       return this
     }
   })
@@ -378,20 +412,32 @@ $.use = function (...methods) {
   })
 }
 
-$.each = function (iterator, cb) {
-  let index = 0
-  for (const [key, val] of Object.entries(iterator)) {
-    cb(val, key, index, iterator)
-    index++
-  }
-}
+// $.each = function (iterator, cb) {
+//   let index = 0
+//   for (const [key, val] of Object.entries(iterator)) {
+//     cb(val, key, index, iterator)
+//     index++
+//   }
+// }
 
-$.map = function (iterator, cb) {
-  let index = -1
-  const cache = []
-  for (const [key, val] of Object.entries(iterator)) {
-    index++
-    cache.push(cb(val, key, index, iterator))
-  }
-  return cache
-}
+// $.map = function (iterator, cb) {
+//   let index = -1
+//   const cache = []
+//   for (const [key, val] of Object.entries(iterator)) {
+//     index++
+//     cache.push(cb(val, key, index, iterator))
+//   }
+//   return cache
+// }
+
+// $.get = async function ({ url, data = {}, success = () => {}, dataType }) {
+//   const queryStr = Object.entries(data).map(([key, value]) => key + '=' + value).join('&')
+//   let res = await fetch(url + '?' + queryStr, {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': dataType
+//     }
+//   })
+//   res = await res.json()
+//   success(res)
+// }

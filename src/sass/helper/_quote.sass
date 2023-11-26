@@ -1,14 +1,20 @@
 .quoat-comma
   quotes: '“''”'
+  font-size: 3em
   &::before,
   &::after
+    display: block
+    height: .5em
     font-family: Georgia
     line-height: 1
 
   &::before
     content: open-quote
-    float: left
+    // margin-right: .5em
+    // float: left
 
   &::after
     content: close-quote
-    float: right
+    text-align: right
+    // margin-left: .5em
+    // float: right

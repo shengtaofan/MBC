@@ -1,0 +1,40 @@
+extends ./template/layout.pug
+block local
+  - headerH1 = true
+block body
+  section(style='padding-top: 96px')
+    .container
+      .pin.hidden.block-l
+        .fixed-img(style!=`background-image:url(${require('./img/葉維中.png')});background-position: right 200px bottom`)
+      .timeline
+        each review, i in reviews
+          .timeline-target(id='timeline-'+i)
+            .timeline-content
+              .timeline-avatar
+                img(src=require(`./img/${review.name}.png`) width='auto' height='100%' alt=review.name title=review.name loading='lazy')
+              h2.timeline-client
+                each company, i in review.company
+                  if i === review.company.length - 1
+                    |#{company}&emsp;
+                    span.t-tertiary #{review.name}
+                  else
+                    |#{company}
+                    if i%2
+                      |&emsp;&emsp;&emsp;&emsp;
+                    br
+              .timeline-item
+                .timeline-inner
+                  blockquote.quoat-comma
+                    p.timeline-desc #{review.feedback}
+                  .clearfix
+                  ul.timeline-title
+                    each title in review.titles
+                      li #{title}
+
+//- block scripthead
+  script(src='//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js')
+  script(src='//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js')
+  script
+    |addEventListener('DOMContentLoaded',function(e){
+    include ./js/reviews.js
+    |})

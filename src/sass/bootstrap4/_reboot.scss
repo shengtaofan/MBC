@@ -154,6 +154,9 @@ ul ol {
 strong {
   font-weight: $font-weight-bolder; // Add the correct font weight in Chrome, Edge, and Safari
 }
+blockquote {
+  margin: 0 0 2rem;
+}
 @if $enable-define {
 dt {
   font-weight: $dt-font-weight;
@@ -164,9 +167,7 @@ dd {
   margin-left: 0; // Undo browser default
 }
 
-blockquote {
-  margin: 0 0 1rem;
-}
+
 
 b {
   @extend strong;

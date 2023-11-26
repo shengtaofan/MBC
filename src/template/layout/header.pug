@@ -30,20 +30,22 @@ header.fxd-strch.top-0
         span.navbar-toggler-icon
       #mobile-menu.navbar-collapse.collapse
         ul.navbar-nav.ml-auto
-          li.nav-item
-            a.nav-link(href='./index.html#sec-us' title='Link' class={ active: basename==='Link' }) #{ $('introduction') }
-          li.nav-item
-            a.nav-link(href='./index.html#sec-strength' title='Link' class={ active: basename==='Link' }) #{ $('strength') }
-          li.nav-item
-            a.nav-link(href='./index.html#sec-planTitle' title='Link' class={ active: basename==='Link' }) #{ $('planTitle') }
-          li.nav-item
-            a.nav-link(href='./index.html#sec-contact' title='Link' class={ active: basename==='Link' }) #{ $('contactus') }
+          li.nav-item(class={ active: basename==='Link' })
+            a.nav-link(href='./index.html#sec-us' title=$('introduction')) #{ $('introduction') }
+          li.nav-item(class={ active: basename==='Link' })
+            a.nav-link(href='./index.html#sec-strength' title=$('strength')) #{ $('strength') }
+          li.nav-item(class={ active: basename==='Link' })
+            a.nav-link(href='./index.html#sec-planTitle' title=$('planTitle')) #{ $('planTitle') }
+          li.nav-item(class={ active: basename==='Link' })
+            a.nav-link(href='./index.html#sec-contact' title=$('contactus')) #{ $('contactus') }
           if locale === 'zh'
-            li.nav-item
-              a.nav-link(href='./en/index.html' title='Link' class={ active: basename==='Link' }) EN
+            li.nav-item(class={ active: basename==='reviews' })
+              a.nav-link(href='./reviews.html' title='Reviews') 證言推薦
+            li.nav-item(class={ active: basename==='Link' })
+              a.nav-link(href='./en/index.html' title='Link') EN
           if locale === 'en'
-            li.nav-item
-              a.nav-link(href='../index.html' title='Link' class={ active: basename==='Link' }) 中文
+            li.nav-item(class={ active: basename==='Link' })
+              a.nav-link(href='../index.html' title='Link') 中文
           //- +navDropdown('navbar-dropdown', '選單1', {
           //-   '系統排列':'index.html',
           //-   '團隊陣容':'page.html',

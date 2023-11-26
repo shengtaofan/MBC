@@ -29,3 +29,6 @@
     --col-width: #{round(calc(1520px / 12))};
   }
 }
+@mixin radial($x) {
+  background-image: radial-gradient(circle at $x 50%, $body-bg 50px, darken($body-bg, 3%) 60px, lighten($body-bg, 3%) 70px, $body-bg 100px, darken($body-bg, 3%) 110px, lighten($body-bg, 3%) 120px, $body-bg 150px, darken($body-bg, 3%) 160px, lighten($body-bg, 3%) 170px, transparent 200px);
+}

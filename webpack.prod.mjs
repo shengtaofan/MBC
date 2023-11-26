@@ -74,7 +74,10 @@ if (+process.env.OPTIMIZE) {
     }),
     new PurgeCSSPlugin({
       paths: glob.sync(path.resolve('src', '**', '*'), { nodir: true }),
-      only: ['demo', 'style']
+      only: ['demo', 'style'],
+      safelist: {
+        standard: ['scrollmagic-pin-spacer']
+      }
     }),
     new CssMinimizerPlugin({
       parallel: true,

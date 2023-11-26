@@ -1,22 +1,38 @@
 block footer
-footer.py-3
+footer.bg-primary.py-3
   address.container.fz-14
     .flexbox.a-end.gx-0.gy-3.lh-xxl-none.t-ctr
       .sp-l-auto
         img(src=require('./img/embedSVG/logo.svg') title=title alt=title width='45' height='45' loading='eager')
       .sp-l-auto
         h6.fz-14 !{ $('copyright') }
-      .sp-l-auto.ml-l-auto
+      .sp-12.sp-l
+        .flexbox.J-ctr
+          .sp-auto
+            a.i-fb(href='https://www.facebook.com/master.builder.consulting' title='facebook' target='_blank' rel='noreferrer noopener nofollow')
+              svg.img-fluid(fill='currentColor' width='32' height='32')
+                use(xlink:href='/img/sprite.svg#fb')
+          .sp-auto
+            a.i-line(href='https://line.me/R/ti/p/@099usuqf' title='line' target='_blank' rel='noreferrer noopener nofollow')
+              svg.img-fluid(fill='currentColor' width='32' height='32')
+                use(xlink:href='/img/sprite.svg#line')
+          .sp-auto
+            a.i-linkedin(href='https://tw.linkedin.com/company/創業家顧問股份有限公司' title='linkedin' target='_blank' rel='noreferrer noopener nofollow')
+              svg.img-fluid(fill='currentColor' width='32' height='32')
+                use(xlink:href='/img/sprite.svg#linkedin')
+      .sp-l-auto
         ul.list-unstyled.t-l-right.gy-3
           li
             a(href='https://goo.gl/maps/Qz8CnewuQLUxABA48' title='google maps' target='_blank' rel='noreferrer noopener nofollow') #{ $('address') }
           li
             a(href='mailto:master.builder.tw@gmail.com' title='email') master.builder.tw@gmail.com
+    //- .flexbox.gx-2
+
       //- li
         strong 電話
         a(href='tel:' title='')=headerH1
 .fixed-right
-  ul.list-unstyled.gy-3
+  ul.list-unstyled.gy-2
     li
       .line-pc
         img.line-icon(src=require('./img/embedSVG/line.svg') width='60' height='60' alt='Official Line account' title='Official Line account' loading='lazy')
@@ -27,8 +43,8 @@ footer.py-3
         img.line-join-icon(src=require('./img/joinLine-'+locale+'.png') width='116' height='36' title='加入好友' alt='加入好友' loading='lazy')
         br
         span.line-join-text #{ $('addLineFriend') }
-    li.t-right
-      a(href='https://www.facebook.com/master.builder.consulting' title='創業家顧問臉書' target='_blank' rel='noreferrer noopener nofollow')
-        img(src=require('./img/embedSVG/fb.svg') width='60' height='60' alt='facebook fan club' title='facebook fan club' loading='lazy')
+    //- li.t-right.hidden.block-m
+    //-   a(href='https://www.facebook.com/master.builder.consulting' title='創業家顧問臉書' target='_blank' rel='noreferrer noopener nofollow')
+    //-     img(src=require('./img/embedSVG/fb.svg') width='60' height='60' alt='facebook fan club' title='facebook fan club' loading='lazy')
     li
       a.go-top(href='#top' title='Go top') ↑
